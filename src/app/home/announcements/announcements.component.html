@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="announcement-heading text-center">
+    <h1>Current Announcements</h1>
+  </div>
+  <div class="text-center P-2" *ngIf="announcement.length == 0">
+    <p style="color: black" >
+      No Announcements available
+    </p>
+  </div>
+  <div class="row justify-content-center announcement-body">
+    <div *ngFor="let a of announcement" class="card card-image mb-3 col-lg-3 col-md-12 col-sm-12 col-xs-12"
+      [style.background]="'url('+ loadImage(a?.image?.url) +')'">
+      <div class="outline text-white text-center d-flex align-items-center py-3 px-4">
+        <div class="col-md-12">
+          <!-- <h3 class="card-title pt-2"><strong>{{ item.title }}</strong></h3>
+          <p style="font-size: 12px; white-space: pre-line !important;">{{ item.description }}</p> -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

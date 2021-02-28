@@ -1,0 +1,59 @@
+/*Announcement Heading*/
+div.announcement-heading {
+    margin: 3em 0px;
+}
+div.announcement-heading h1 {
+    color: black !important;
+}
+
+/*card styles*/
+div.card {
+    background-size: cover !important;
+    background-position: center !important;
+    padding: 0px !important;
+    margin: 0px 25px;
+}
+
+div.card div.outline {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 5px !important;
+}
+
+div.controls button {
+    background-color: #E02E2E !important; 
+    color: white !important;
+}
+
+:host >>> .carousel-indicators {
+    display: none !important;
+}
+
+:host >>> .controls-top {
+    display: none;
+}
+
+.announcement-body {
+    min-height: 150px;
+    margin-bottom: 3em !important;
+}
+
+div.announcement-image image:hover {
+    cursor: pointer;
+}
+
+div.announcement-image image:active {
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+::ng-deep .embed-responsive-item {
+    background: unset !important;
+}
+
+::ng-deep .widget {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .embed-responsive body {
+    margin: unset !important;
+}

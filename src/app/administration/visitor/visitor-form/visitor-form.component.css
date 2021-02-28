@@ -1,0 +1,12 @@
+.table-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.progress .progress-bar {
+    background-color: #E02E2E !important;
+}
+
+p {
+    color: black !important;
+}

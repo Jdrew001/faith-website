@@ -1,0 +1,7 @@
+p {
+    color: black !important;
+}
+
+p.error {
+    color: #E02E2E !important;
+}

@@ -1,0 +1,27 @@
+div.watch-container div.watch-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+div.container {
+    padding-top: 10em !important;
+}
+
+div.bg-fill  {
+    width: 100%;
+    height: 100vh;
+}
+
+::ng-deep .video-js {
+    width: 100%;
+    height: auto;
+}
+
+::ng-deep .video-js .vjs-tech {
+    position: unset !important;
+    top: unset !important;
+    bottom: unset !important;
+}

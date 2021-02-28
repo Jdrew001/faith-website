@@ -1,0 +1,109 @@
+<div mdbModal #modal="mdbModal" class="modal fade up" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" (close)="onClose($event)">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Announcement Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="announcementForm">
+        <div class="modal-body mx-3 row">
+          <div class="col-md-6 left-container">
+            <div class="col-md-12">
+              <div class="md-form">
+                <input mdbInput type="text" formControlName="heading" id="title" class="form-control"
+                  placeholder="Title">
+                <label for="title">Heading</label>
+                <p class="error" *ngIf="announcementForm.get('heading').invalid && formSubmitted">Title is
+                  Required</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="md-form">
+                <textarea mdbInput id="description" class="md-textarea form-control" rows="5"
+                  formControlName="description"></textarea>
+                <label for="description">Description</label>
+                <p class="error" *ngIf="announcementForm.get('description').invalid && formSubmitted">Description is
+                  Required</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="md-form input-group">
+                <div class="col-md-12">
+                    <label for="description">Month and Year</label>
+                </div>
+                <!--<input class="mr-2" type="text" aria-label="Month" class="form-control" placeholder="Month">
+                <input class="ml-2" type="text" aria-label="Year" class="form-control" placeholder="Year">-->
+                <div class="col-md-6" style="padding:0px 5px 0px 0px">
+                    <mdb-select (selected)="monthSelected($event)" [options]="months" placeholder="Choose your option" formControlName="month"></mdb-select>
+                    <p class="error" *ngIf="announcementForm.get('month').invalid && formSubmitted">Announcement Month is
+                        Required</p>
+                    <p class="error" *ngIf="dateError && formSubmitted">Announcement Month invalid</p>
+                </div>
+                <div class="col-md-6" style="padding:0px 0px 0px 5px">
+                    <mdb-select (selected)="yearSelected($event)" [options]="years" placeholder="Choose your option" formControlName="year"></mdb-select>
+                    <p class="error" *ngIf="announcementForm.get('year').invalid && formSubmitted">Announcement Year is
+                        Required</p>
+                    <p class="error" *ngIf="dateError && formSubmitted">Announcement Year invalid</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="md-form">
+                <mdb-date-picker #datePicker name="mydate" [placeholder]="'Expiration Date'"
+                  [options]="myDatePickerOptions" formControlName="expirationDate" required></mdb-date-picker>
+                <p class="error" *ngIf="announcementForm.get('expirationDate').invalid && formSubmitted">Expiration date
+                  is Required</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="md-form">
+                <div class="file-field">
+                  <div class="btn btn-primary btn-sm float-left file-button" [ngClass]="(!isEdit ? 'disabled' : '')">
+                    <span>Choose file</span>
+                    <input [disabled]="!isEdit" type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)"
+                      [uploadInput]="uploadInput">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload your file" [value]="showFiles()"
+                      [disabled]="true">
+                  </div>
+                </div>
+                <p class="error" *ngIf="files.length <= 0 && formSubmitted">Image is Required</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 right-container">
+            <div *ngIf="files.length > 0" class="card card-image mb-3 col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeIn"
+              [style.background]="'url('+ imageUrl +')'">
+              <div class="outline text-white text-center d-flex align-items-center rgba-stylish-strong py-3 px-4">
+                <div style="width: 100%">
+                  <h3 class="card-title pt-2"><strong>{{ announcementForm.get('heading').value }}</strong></h3>
+                  <p class="description">{{ announcementForm.get('description').value }}</p>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="files.length === 0">
+              <h1 class="text-center" style="color: black">No Preview Available</h1>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button *ngIf="isEdit && !announcementAdd" class="btn light-blue darken-2" type="button"
+            (click)="editMode()">Cancel Edit</button>
+          <button *ngIf="isEdit && announcementAdd" class="btn light-blue darken-2" type="button"
+            (click)="modal.hide()">Cancel</button>
+          <button *ngIf="!isEdit !announcementAdd" class="btn light-blue darken-2" type="button"
+            (click)="editMode()">Edit</button>
+          <button *ngIf="isEdit && !announcementAdd" class="btn light-blue darken-2" type="button"
+            (click)="updateAnnouncement()">Submit</button>
+          <button *ngIf="isEdit && announcementAdd" class="btn light-blue darken-2" type="button"
+            (click)="addAnnouncement()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

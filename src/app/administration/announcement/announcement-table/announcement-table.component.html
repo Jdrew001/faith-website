@@ -1,0 +1,105 @@
+<div class="app-container">
+  <div class="row">
+
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="padding: 0px">
+
+      <div class="card">
+
+        <div class="card-body">
+          <div class="">
+            <div class="col-md-12">
+              <div class="col-md-12 col-sm-12" style="float:right;">
+                <button mdbTooltip="Edit selected announcement" placement="top" #editBtn mdbBtn type="button" size="sm"
+                  color="primary" mdbWavesEffect style="float:right;" (click)="openDetails()"
+                  [disabled]="!selectedAnnouncement">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Reorder announcements" placement="top" #reorder mdbBtn type="button" size="sm"
+                  color="primary" mdbWavesEffect style="float:right;" (click)="openReorder()"
+                  [disabled]="selectedAnnouncement">
+                  <i class="fa fa-arrows" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Add new announcement" placement="top" #addBtn mdbBtn type="button" size="sm"
+                  color="success" mdbWavesEffect style="float:right;" (click)="openDetailsAdd()"
+                  [disabled]="selectedAnnouncement">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Delete selected announcement" placement="top" #delBtn mdbBtn type="button" size="sm"
+                  color="danger" mdbWavesEffect style="float:right;" (click)="deleteAnnouncement()"
+                  [disabled]="!selectedAnnouncement">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Unselect announcement" placement="left" *ngIf="selected.length > 0" #removeBtn
+                  mdbBtn type="button" size="sm" style="float:right" color="danger" mdbWavesEffect
+                  (click)="removeSelected()">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <div [formGroup]="selectForm">
+                  <div class="col-md-2" style="float:left">
+                    <mdb-select formControlName="month" [options]="monthOptions" placeholder="month"></mdb-select>
+                  </div>
+                  <div class="col-md-2" style="float:left">
+                    <mdb-select formControlName="year" [options]="yearOptions" placeholder="year"></mdb-select>
+                  </div>
+                </div>
+                <button mdbTooltip="Apply Date Selection" placement="left"
+                  mdbBtn type="button" size="sm" style="float:left" color="primary" mdbWavesEffect
+                  (click)="applySelectedDate()">
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+  </div>
+  <div class="row">
+    <ngx-datatable #table [rows]="data" [columnMode]="'flex'" [rowHeight]="'auto'" [scrollbarV]="false"
+      [scrollbarH]="false" [footerHeight]="50" [limit]="8" [selected]="selected" [selectionType]="'single'"
+      (select)='onSelect($event)' class="material col-md-12">
+
+      <ngx-datatable-column name="Heading" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Description" [flexGrow]="5">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Month" [flexGrow]="5">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{getMonth(value)}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Year" [flexGrow]="5">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Date" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Expiration Date" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+</div>

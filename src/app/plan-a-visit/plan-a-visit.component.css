@@ -1,0 +1,83 @@
+div.view div.heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;;
+}
+
+div.heading div.bg-fill {
+    height: 100vh;
+}
+
+div.heading div.bg-fill h1 {
+    font-size: 5em;
+    padding-top: 15%;
+}
+
+div.heading div.bg-fill p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+div.visit-body h1 {
+    color: black !important;
+}
+
+div.visit-body p {
+    color: black !important;
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.service-times {
+    padding: 3em 0;
+}
+
+img {
+    width: 100%;
+}
+
+/*What to expect section*/
+div.expect h1 {
+    padding-top: 1.5em;
+    font-size: 35px;
+}
+
+div.expect h2 {
+    color: black !important;
+    font-size: 25px !important;
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.expect div.expect-content {
+    padding: 3em 0px;
+}
+
+/*What about my kids section*/
+div.kids h2 {
+    color: black !important;
+    font-size: 25px !important;
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.kids div.kids-content {
+    padding: 3em 0px;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 576px) {
+    div.heading h1 {
+        font-size: 3em !important;
+        padding-top: 45% !important;
+    }
+
+    div.heading p {
+        font-size: 1.3em !important;
+    }
+
+    /* content styles */
+    div.visit-body div.text-content {
+        padding: 1.5em 0px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,17 @@
+<div>
+  <div  class="section-bg wow fadeIn" [style.background]="'url('+ imageUrl +')'">
+    <div class="rgba-stylish-strong bg-fill">
+      <div class="container text-center">
+        <div class="heading">
+          <h1>{{ homeContent?.bibleStudy?.title }}</h1>
+        </div>
+        <div class="bible-body" [innerHtml]="homeContent?.bibleStudy?.description">
+        </div>
+        <div class="bible-footer">
+            <a mdbBtn class="waves-light button" [routerLink]="[homeContent?.bibleStudy?.button_url]">Reach Out to Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

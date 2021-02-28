@@ -1,0 +1,88 @@
+div.section-container {
+    height: 100%;
+}
+
+div.container {
+    height: 100%;
+}
+
+div.ministry-global div.youth-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+div.bg-fill  {
+    width: 100%;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    padding-top: 20%;
+}
+
+p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+div.ministry-global div.kids-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+div.ministry-global div.ladies-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+div.ministry-global div.mens-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+div.ministry-global div.marrieds-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+div.ministry-global div.bible-heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
+
+div.bg-fill {
+    height: 100vh;
+    width: 100%;
+}
+
+div.footer {
+    text-align:center;
+
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 3em !important;
+        padding-top: 45% !important;
+    }
+
+    p {
+        font-size: 1.3em !important;
+    }
+}

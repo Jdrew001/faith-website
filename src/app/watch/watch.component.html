@@ -1,0 +1,31 @@
+<div class="watch-container">
+  <div class="watch-heading wow fadeIn" [style.background]="'url('+ watchImageUrl +')'">
+    <div class="bg-fill rgba-blue-grey-strong">
+      <div class="container">
+        <div *ngIf="!isLive" class="col-md-12 P-2 announcement-image text-center" style="margin-bottom: 3em">
+          <a href="https://www.facebook.com/faithtabernacle.arlington">
+            <img src="../../assets/images/live.png" class="img-fluid z-depth-2" />
+          </a>
+        </div>
+        <video
+          id="faith-tab-video"
+          class="video-js vjs-default-button vjs-big-play-centered"
+            controls
+            playsinline
+            preload="auto"
+            data-setup="{}"
+          >
+          <source src="{{this.url}}" type="application/x-mpegURL"/>
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a
+          >
+        </p>
+      </video>
+      <p class="text-center" *ngIf="isLive"><em>**refresh the page to fix any loading issues during streaming times**</em></p>
+      </div>
+    </div>
+  </div>
+</div>

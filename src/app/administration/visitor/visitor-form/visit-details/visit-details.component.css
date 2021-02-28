@@ -1,0 +1,12 @@
+p {
+    color: black !important;
+}
+
+p.error {
+    color: #E02E2E !important;
+}
+
+::ng-deep .form-check-input[type="checkbox"].filled-in:checked + label:after {
+    border-color: #E02E2E !important;
+    background-color: #E02E2E !important;
+  }

@@ -1,0 +1,97 @@
+/*general styles for the page*/
+div.view div.heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+div.heading div.bg-fill {
+    height: 100vh;
+}
+
+div.heading div.bg-fill h1 {
+    font-size: 5em;
+    padding-top: 25%;
+}
+
+/*mission content*/
+/*mission content heading*/
+div.content-heading {
+    padding: 3em 0;
+}
+
+div.content-heading h1, div.content-heading p {
+    color: black !important;
+}
+
+div.content-heading h1 {
+    font-size: 2.5em !important;
+}
+
+div.content-heading p {
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.image-content {
+    padding: 3em 0;
+}
+
+div.image-content img {
+    width: 75%;
+    margin: auto;
+}
+
+/*project contents*/
+div.content-projects {
+    text-align: center;
+}
+
+div.content-projects p {
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.project-heading {
+    padding-bottom: 2em;
+}
+
+div.project-heading h1 {
+    color: black !important;
+    font-size: 2.5em !important;
+}
+
+div.project-content {
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    height: 100vh;
+}
+
+div.project-content .bg-fill {
+    height: 50em;
+}
+
+div.project-content h1 {
+    padding-top: 15%;
+    font-size: 5em;
+}
+
+div.project-content p {
+    padding: 0px 15%;
+    font-size: 15px;
+}
+
+@media (max-width: 576px) {
+
+    div.heading div.bg-fill h1 {
+        font-size: 3em;
+        padding-top: 75%;
+    }
+    
+    div.project-content h1 {
+        font-size: 3em !important;
+        padding-top: 55% !important;
+    }
+
+}

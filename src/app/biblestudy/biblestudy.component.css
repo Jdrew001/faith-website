@@ -1,0 +1,75 @@
+/*general styles for the page*/
+div.view div.heading {
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+div.heading div.bg-fill {
+    height: 100vh;
+}
+
+div.heading div.bg-fill h1 {
+    font-size: 5em;
+    padding-top: 15%;
+}
+
+div.heading div.bg-fill p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+div.controls button {
+    background-color: #E02E2E !important; 
+    color: white !important;
+}
+
+:host >>> .carousel-indicators li {
+    background-color: #E02E2E !important; 
+}
+
+:host >>> .controls-top {
+    display: none;
+}
+
+div.bible-content {
+    padding: 1.5em 0;
+}
+
+div.bible-content p {
+    color: black !important;
+    font-size: 15px !important;
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+div.bible-content h2 {
+    color: black !important;
+    text-align: center;
+    font-size: 25px !important;
+    font-family: 'roboto-light', Arial, Helvetica, sans-serif;
+}
+
+/*card styles*/
+div.b-body {
+
+}
+
+/*card styles*/
+div.card {
+    background-size: cover !important;
+    background-position: center !important;
+    padding: 0px !important;
+    margin: 0px 25px;
+}
+
+@media (max-width: 576px) {
+    div.heading h1 {
+        font-size: 3em !important;
+        padding-top: 45% !important;
+    }
+
+    div.heading p {
+        font-size: 1.3em !important;
+    }
+}

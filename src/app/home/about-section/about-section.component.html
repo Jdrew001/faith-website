@@ -1,0 +1,67 @@
+<!--<div class="about-bg">
+  <div class="container">
+    <div class="row justify-content-center wow fadeIn">
+      <div class="image-content col-lg-4">
+        <img class="d-none d-lg-block" [src]="imageUrl" alt="about us">
+        <img class="d-block d-lg-none" [src]="mobileUrl" alt="about us">
+      </div>
+      <div class="text-content col-lg-4">
+        <div class="heading">
+          <h1>ABOUT US</h1>
+        </div>
+        <div class="about-body">
+          <p>Jonathan and Melissa Harris has been married for 26 years and, together, have four daughters. 
+            Jonathan is a graduate of Texas Bible College with a Bachelors of Arts in Christian Ministry with a focus in Theology. 
+            Jonathan and Melissa have been active pastors at Faith Tabernacle for 14 years. 
+            Prior to pastoring, Jonathan and Melissa were missionaries in Nairobi, Kenya, where they directed a bible school and founded churches in the local community.</p>
+        </div>
+        <div class="about-footer">
+          <a mdbBtn class="waves-light button">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+<div class="about-bg">
+  <div class="container">
+    <!-- News jumbotron -->
+    <div class="jumbotron text-center hoverable p-4 mdb-color grey lighten-4 mx-2 mb-5" style="margin-top: 3em">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+          <!-- Featured image -->
+          <div class="view overlay waves-light" mdbWavesEffect>
+              <img class="col-md-12" [src]="imageUrl" alt="about us">
+            <!--<a>
+              <div class="mask rgba-white-slight"></div>
+            </a>-->
+          </div>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-7 text-md-left ml-3 mt-3">
+
+          <!-- Excerpt -->
+          <h6 class="h6 pb-1">{{ homeContent?.about?.sub_title }}</h6>
+
+          <h4 class="h4 mb-4">{{ homeContent?.about?.title }}</h4>
+          <div [innerHtml]="homeContent?.about?.description | sanitize">
+          </div>
+          <!--<a mdbBtn class="waves-light button">Read More</a>-->
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- News jumbotron -->
+  </div>
+</div>

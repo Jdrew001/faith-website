@@ -1,0 +1,62 @@
+div.section-container {
+    height: 100%;
+}
+
+div.heading {
+    height: 100vh;
+    background-position: 65% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;   
+}
+
+div.heading div.bg-fill {
+    height: 100vh;
+}
+
+div.heading div.bg-fill h1 {
+    font-size: 8em;
+    padding-top: 15%;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.z-depth-1 {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10), 0 2px 10px 0 rgba(0, 0, 0, 0.01) !important
+}
+
+.button {
+    border-radius: 4px !important;
+}
+
+span.error {
+    color: red !important;
+    text-align: left !important;
+    text-transform: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.otherType {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+@media (max-width: 576px) {
+    .p-5 {
+        padding: 1.5rem !important;
+    }
+
+    .col-md-12 {
+        padding: 0px !important;
+    }
+
+    .otherType {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+
+    h1 {
+        font-size: 5rem !important;
+        padding-top: 50% !important;
+    }
+}

@@ -1,0 +1,212 @@
+<div class="add-visitor-body">
+  <!-- Nav tabs -->
+  <form class="col-lg-8 col-md-12 col-sm-12 col-xs-12" [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
+    <mdb-tabset #tabset [buttonClass]="'md-tabs tabs-3 light-blue darken-2'" [contentClass]="'card'">
+      <mdb-tab heading="Visitor Information">
+        <!-- Card -->
+        <div class="">
+
+          <!-- Card body -->
+          <div class="">
+            <h3 class="h1 text-center py-4">Welcome to Faith Tabernacle</h3>
+            <div class="container">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="firstname"
+                      placeholder="First Name - required">
+                    <p class="error" *ngIf="visitorForm.get('firstname').invalid && formSubmitted">First Name</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control required" formControlName="lastname"
+                      placeholder="Last Name - required">
+                    <p class="error" *ngIf="visitorForm.get('lastname').invalid && formSubmitted">Last Name</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control required" appPhoneMask formControlName="phoneNumber"
+                      placeholder="Phone Number - required" >
+                    <p class="error" *ngIf="visitorForm.get('phoneNumber').invalid && formSubmitted">Phone Number is
+                      Required</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="email" id="materialFormCardNameEx" class="form-control required" formControlName="email"
+                      placeholder="Email Address - required">
+                    <p class="error" *ngIf="visitorForm.get('email').invalid && formSubmitted">Email is Required</p>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <mdb-select [options]="methods" [multiple]="true" [highlightFirst]="false"
+                    placeholder="Method of Contact - required" formControlName="methodOfContacts"></mdb-select>
+                  <p class="error" *ngIf="visitorForm.get('methodOfContacts').invalid && formSubmitted">Method of
+                    Contact is Required</p>
+                </div>
+                <div class="col-md-6">
+                  <mdb-select [options]="biblestudy" placeholder="Interested in a bible study? - required"
+                    formControlName="bibleStudy" ></mdb-select>
+                  <p class="error" *ngIf="visitorForm.get('bibleStudy').invalid && formSubmitted">Bible Study is
+                    Required</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="address"
+                      placeholder="Address">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="state"
+                      placeholder="State">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="md-form">
+                    <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="zip"
+                      placeholder="Zip">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-8">
+                  <h5>Family Members</h5>
+                </div>
+                <div class="col-md-4 text-right">
+                  <button type="button" class="btn btn-sm light-blue darken-2" (click)="frame.show()"
+                    data-toggle="modal" data-target="#basicExample">Add</button>
+                </div>
+              </div>
+
+              <div class="row" style="padding: 2em 0">
+                <div class="col-md-12">
+                  <ul class="list-group" *ngFor="let member of familyMembers">
+                    <li class="list-group-item">
+                      {{ member.firstname }} {{ member.lastname }} - {{ member.age }}
+                      <button style="float: right; margin: 0px;" type="button" class="btn btn-danger btn-sm"
+                        data-toggle="modal" data-target="#basicExample"
+                        (click)="removeFamilyMember(member)">Remove</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <div class="text-center py-4 mt-3">
+              <button class="btn light-blue darken-2 btn-block" type="button" (click)="nextTab()">Next</button>
+            </div>
+            <!-- Material form register -->
+
+          </div>
+          <!-- Card body -->
+
+        </div>
+      </mdb-tab>
+      <mdb-tab heading="Greeter Information">
+        <h3 class="h1 text-center py-4">Greeter Information</h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="md-form">
+              <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="greeter"
+                placeholder="Greeter Name">
+                <p class="error" *ngIf="visitorForm.get('greeter').invalid && formSubmitted">Greeter is
+                    Required</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="md-form">
+              <textarea id="form7" class="md-textarea form-control" rows="5" formControlName="notes"></textarea>
+              <label for="form7">Greeter Notes</label>
+            </div>
+          </div>
+        </div>
+        <div class="text-center py-4 mt-3 row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+              <button class="btn light-blue darken-2 btn-block" type="button" (click)="previousTab()">Back</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+              <button class="btn light-blue darken-2 btn-block" type="button" (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+      </mdb-tab>
+      <mdb-tab heading="Logout">
+        <div class="text-center py-4 mt-3">
+          <button class="btn light-blue darken-2 btn-block" type="button" (click)="logout()">Logout</button>
+        </div>
+      </mdb-tab>
+    </mdb-tabset>
+  </form>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade up" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Family Member</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="familyMemberForm" class="col-md-10">
+        <div class="modal-body mx-3">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="md-form">
+                <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="firstname"
+                  placeholder="First Name - Required">
+                <p class="error" *ngIf="familyMemberForm.get('firstname').invalid && familyFormSubmitted">First Name is
+                  Required</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="md-form">
+                <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="lastname"
+                  placeholder="Last Name - Required">
+                <p class="error" *ngIf="familyMemberForm.get('lastname').invalid && familyFormSubmitted">Last Name is
+                  Required</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="md-form">
+                <input type="number" id="materialFormCardNameEx" class="form-control" formControlName="age"
+                  placeholder="Age">
+                <p class="error" *ngIf="familyMemberForm.get('age').invalid && familyFormSubmitted">Age is Required</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button class="btn light-blue darken-2" type="button" (click)="addFamilyMember()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

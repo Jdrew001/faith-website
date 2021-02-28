@@ -1,0 +1,29 @@
+/*****/
+Visitor information
+
+--- visitor ---
+
+first name -- required
+last name -- required
+phone number -- optional
+email -- optional
+preferred method of contact text, call, email
+bible study - yes or no -- required
+Address -- optional
+State -- optional
+Zip -- optional
+notes -- optional
+
+--- familyMembers --- -----optional -> don't have to put any family objs
+- Add button that adds a new family member
+
+first name --required
+last name -- required
+age -- required
+
+
+--changes
+Greeter information
+
+name
+notes

@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Congregation",
+        "subCount": 70
+    },
+    {
+        "name": "Website Subscribers",
+        "subCount": 100
+    },
+    {
+        "name": "Faith Youth",
+        "subCount": 10
+    },
+    {
+        "name": "Faith Men",
+        "subCount": 20
+    },
+    {
+        "name": "Sunday School",
+        "subCount": 9
+    },
+    {
+        "name": "Sound Team",
+        "subCount": 4
+    },
+    {
+        "name": "Musicians",
+        "subCount": 7
+    },
+    {
+        "name": "Faith Kids",
+        "subCount": 9
+    },
+    {
+        "name": "Ladies",
+        "subCount": 20
+    },
+    {
+        "name": "Greeting Team",
+        "subCount": 20
+    },
+    {
+        "name": "Ushers",
+        "subCount": 4
+    }
+]

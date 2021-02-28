@@ -1,0 +1,16 @@
+<div>
+  <div class="section-bg wow fadeIn" style="background-attachment: fixed;" [style.background]="'url('+ imageUrl +')'">
+    <div class="rgba-stylish-strong bg-fill">
+      <div class="container text-center">
+        <div class="heading">
+          <h1>{{ homeContent?.planVisit?.title }}</h1>
+        </div>
+        <div class="visit-body" [innerHtml]="homeContent?.planVisit?.description">
+        </div>
+        <div class="visit-footer">
+           <a mdbBtn class="waves-light button" [routerLink]="[homeContent?.planVisit?.button_url]">View More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

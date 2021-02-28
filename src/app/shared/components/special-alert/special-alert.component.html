@@ -1,0 +1,22 @@
+<div style="z-index: 9999999;" mdbModal #modal="mdbModal" class="modal fade top modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div>
+            <i class="fa fa-bullhorn" aria-hidden="true"></i>
+          </div>
+          <p class="pt-3 mx-4 text-center">
+            <strong>{{ announcement?.description }}</strong>
+          </p>
+
+          <!-- <a mdbBtn class="waves-light button" href="/assets/coronavirus.pdf">Read</a>
+          <a mdbBtn class="waves-light button" (click)="modal.hide()">Close</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

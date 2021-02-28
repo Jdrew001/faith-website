@@ -1,0 +1,64 @@
+<div class="">
+  <div class="heading view intro wow fadeIn" [style.background]="'url('+ headingImgUrl +')'">
+    <div class="bg-fill rgba-blue-grey-strong">
+      <h1 class="text-center animated fadeIn">Get In <br>Touch</h1>
+    </div>
+  </div>
+</div>
+<div [formGroup]="contactForm" class="container pb-5 pt-5" style="margin-top: 3%">
+  <div class="col-md-12">
+    <div class="text-center border border-light p-5 z-depth-2">
+  
+      <p class="h4 mb-4">Contact Us</p>
+      <div class="form-row mb-4">
+        <div class="col-md-6 col-sm-12 mb-4">
+            <input formControlName="firstname" type="text" class="form-control z-depth-1" placeholder="First name">
+            <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('firstname').invalid && formSubmitted">First Name required</p>
+        </div>
+        <div class="col">
+            <input formControlName="lastname" type="text" class="form-control z-depth-1" placeholder="Last name">
+            <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('lastname').invalid && formSubmitted">Last Name required</p>
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+      <div class="col-md-6 col-sm-12 mb-4">
+        <input formControlName="email" type="text" class="form-control z-depth-1" placeholder="E-mail">
+        <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('email').invalid && formSubmitted">E-mail required</p>
+      </div>
+
+      <div class="col">
+        <input formControlName="phone" appPhoneMask type="text" class="form-control z-depth-1" placeholder="Phone">
+        <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('phone').invalid && formSubmitted">Phone required</p>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <textarea type="text" formControlName="description" class="form-control z-depth-1" placeholder="Message"></textarea>
+      <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('description').invalid && formSubmitted">Message required</p>
+    </div>
+
+    <div class="mb-4 row justify-content-center">
+      <ngx-recaptcha2 #captchaElem
+        [siteKey]="site_key"
+        (reset)="handleReset()"
+        (expire)="handleExpire()"
+        (load)="handleLoad()"
+        (success)="handleSuccess($event)"
+        [useGlobalDomain]="false"
+        [size]="'normal'"
+        [hl]="'en'"
+        [theme]="'light'"
+        formControlName="captcha">
+      </ngx-recaptcha2><br>
+      <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('captcha').invalid && formSubmitted">Captcha required</p>
+    </div>
+      
+    <div class="row justify-content-center">
+      <div id="paypal-button-container" class="col-md-6">
+        <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitForm()">Submit</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

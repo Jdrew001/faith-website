@@ -1,0 +1,57 @@
+div.section-bg {
+    width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+div.section-bg div.bg-fill {
+    width: 100%;
+    height: inherit;
+}
+
+div.heading {
+    padding: 5% 0 2% 0;
+}
+
+div.visit-body {
+    padding: 0 0 4% 0;
+}
+
+div.visit-body p {
+    font-size: 15px !important;
+    margin: 0px 10em;
+}
+
+div.visit-footer {
+    padding: 0 0 5% 0;
+}
+
+a {
+    width: 100%;
+}
+
+img {
+    width: 40%;
+    box-shadow: unset !important;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    div.visit-body p {
+        margin: 0px 1em !important;
+    }
+
+    img {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    div.bottom-bar div.address {
+        display: none;
+    }
+}

@@ -1,0 +1,23 @@
+<div>
+  <div class="row">
+    <div class="md-form input-group mb-3 col-md-10 col-sm-10 col-xs-10">
+      <div class="input-group-prepend">
+        <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-default">Search by Message</span>
+      </div>
+      <input #searchInput type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroupMaterial-sizing-default" (keyup)='filterListView($event)'>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2">
+      <a mdbBtn (click)="dialogOpen()" style="float: right;" floating="true" size="sm" class="green darken-1" mdbWavesEffect>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <a mdbBtn style="float: right;" floating="true" size="sm" class="light-blue darken-2" mdbWavesEffect>
+        <i class="fa fa-filter" aria-hidden="true">
+          <span class="badge-item badge">1</span>
+        </i>
+      </a>
+    </div>
+  </div>
+  <app-a-message-list [messages]="messages"></app-a-message-list>
+  <app-a-message-details></app-a-message-details>
+</div>

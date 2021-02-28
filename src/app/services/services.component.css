@@ -1,0 +1,53 @@
+div.section-container {
+    height: 100%;
+}
+
+div.heading {
+    height: 100vh;
+    background-position: 65% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;   
+}
+
+div.heading div.bg-fill {
+    height: 100vh;
+}
+
+div.heading div.bg-fill h1 {
+    font-size: 8em;
+    padding-top: 15%;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+div.row {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+div.vid {
+    padding-top: 20px;
+}
+
+p.underline {
+    border-bottom: 1px solid #E02E2E;
+}
+
+@media (max-width: 576px) {
+    .p-5 {
+        padding: 1.5rem !important;
+    }
+
+    .col-md-12 {
+        padding: 0px !important;
+    }
+
+    h1 {
+        font-size: 5rem !important;
+        padding-top: 50% !important;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+}

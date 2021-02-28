@@ -1,0 +1,32 @@
+<ul class="list-group list-group-flush scroll-list">
+    <li class="list-group-item" *ngFor="let val of tempData">
+      <div class="col-md-12">{{ showDetails }}
+        <code>{{ val.subCount }} members</code>
+      </div>
+      <div class="col-md-12">
+        {{ val.name }}
+        <div class="pull-right">
+          <i class="fa fa-trash app-icon delete-icon" aria-hidden="true" (click)="deleteGroup()"></i>
+          <i class="fa app-icon edit-icon fa-pencil-square-o" aria-hidden="true"></i>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pg-blue justify-content-center">
+      <li class="page-item" [ngClass]="{'disabled': activePage === 1}">
+        <a class="page-link arrow-nav" tabindex="-1" mdbWavesEffect (click)="changePage('down')">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li *ngFor="let page of tempPages" class="page-item"><a [ngClass]="{'active': page===activePage}"
+          class="page-link">{{ page }}</a></li>
+      <li class="page-item" [ngClass]="{'disabled': activePage === pages.length}">
+        <a class="page-link arrow-nav" mdbWavesEffect (click)="changePage('up')">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>

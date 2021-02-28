@@ -1,0 +1,52 @@
+div.add-visitor-body {
+    margin: 2em; 
+}
+
+form {
+    margin: auto;
+}
+
+img {
+    margin: 20% 0% !important;
+    box-shadow: none !important;
+    width: 50%;
+    color: white;
+}
+
+h5 {
+    line-height: 2.1em;
+    padding: 0px;
+    margin: 0px;
+}
+
+p.error {
+    color: red !important;
+    text-align: left !important;
+    text-transform: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+:host >>> .classic-tabs {
+    background-color: #0288d1  !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+:host >>> .card {
+    background-color: #F8F8FF !important;
+}
+
+@media (max-width: 991px) {
+    :host >>> div.container-fluid {
+        padding: 0px !important;
+    }
+
+    div.mx-3 {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    div.add-visitor-body {
+        margin: 0px !important;
+    }
+}

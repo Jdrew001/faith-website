@@ -1,0 +1,170 @@
+<div class="visitor-container">
+  <div class="row">
+    <div class="col-md-12">
+      
+    </div>
+
+    <div class="col-md-3">
+      <!-- Card -->
+      <div [ngClass]="{'filter-active': visitorTotalFilter}" class="card kpi-card" (click)="onKpiFilter('total-visitors')">
+
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title"><a>Visitor Total</a></h4>
+          <!-- Text -->
+
+          <h1>{{ kpi.visitorTotal }}</h1>
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+
+    <div class="col-md-3">
+      <!-- Card -->
+      <div [ngClass]="{'filter-active': biblestudyFilter}" class="card kpi-card" (click)="onKpiFilter('biblestudy')">
+
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title"><a>Bible Study Total</a></h4>
+
+          <h1>{{ kpi.bibleStudyTotal }}</h1>
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+
+    <div class="col-md-3">
+      <!-- Card -->
+      <div [ngClass]="{'filter-active': visitorsFilter}" class="card kpi-card" (click)="onKpiFilter('visitors-taught')">
+
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title"><a>Total Visitors Taught</a></h4>
+
+          <h1>{{ kpi.visitorsTaught }}</h1>
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+    <div class="col-md-3">
+      <!-- Card -->
+      <div [ngClass]="{'filter-active': newVisitorsTotal}" class="card kpi-card" (click)="onKpiFilter('new-visitors')">
+
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title"><a>Total New Visitors</a></h4>
+
+          <h1>{{ kpi.newVisitorsTotal }}</h1>
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="padding: 0px">
+      <!-- Card -->
+      <div class="card">
+
+        <!-- Card content -->
+        <div class="card-body">
+          <div class="">
+            <div class="col-md-12">
+              <div class="col-md-4" style="float:left">
+                <div class="md-form input-group mb-3" *ngIf="!isMobile">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-default">Search by Visitor</span>
+                  </div>
+                  <input #searchInput type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroupMaterial-sizing-default" (keyup)='filterDatatable($event)'>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12" style="float:right;">
+                <button mdbTooltip="Edit selected visitor" placement="top" #editBtn mdbBtn type="button" size="sm" color="primary" mdbWavesEffect style="float:right;" (click)="openDetails()">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Add new visitor" placement="top" #addBtn mdbBtn type="button" size="sm" color="success" mdbWavesEffect style="float:right;" (click)="openDetailsAdd()" [disabled]="selectedUser">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Delete selected visitor" placement="top" #delBtn mdbBtn type="button" size="sm" color="danger" mdbWavesEffect style="float:right;" (click)="deleteVisitor()">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button mdbTooltip="Unselect visitor" placement="left" *ngIf="selected.length > 0" #removeBtn mdbBtn type="button" size="sm" style="float:right" color="danger" mdbWavesEffect (click)="removeSelected()">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+  </div>
+  <div class="row">
+    <ngx-datatable #table [rows]="data" [columnMode]="'flex'" [rowHeight]="'auto'" [scrollbarV]="false" [scrollbarH]="false"
+      [footerHeight]="50" [limit]="8" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)'
+      class="material col-md-12">
+
+      <ngx-datatable-column name="Name" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Contact Information" [flexGrow]="5">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Greeter" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Contact Methods" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Bible Study" [flexGrow]="2">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Taught" [flexGrow]="2">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column *ngIf="!isMobile" name="Date" [flexGrow]="3">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+
+</div>
+
+
+<app-visitor-details></app-visitor-details>
+<app-confirm (confirmed)="onConfirm($event)" ></app-confirm>

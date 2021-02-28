@@ -1,0 +1,100 @@
+<div class="">
+  <div class="heading view intro wow fadeIn" [style.background]="'url('+ imageUrl +')'">
+    <div class="bg-fill rgba-blue-grey-strong">
+      <h1 class="text-center animated fadeIn">Online Giving</h1>
+    </div>
+  </div>
+</div>
+<div [formGroup]="giveForm" class="container pb-5 pt-5" style="margin-top: 5%">
+  <div class="col-md-12">
+    <div class="text-center border border-light p-5 z-depth-2">
+  
+      <p class="h4 mb-4">Online Giving</p>
+
+      <p class="mb-2" style="color: black; text-align: left">Your Details</p>
+      <!-- Email -->
+      <div class="mb-4">
+        <input formControlName="email" type="email" class="form-control z-depth-1" placeholder="E-mail" autocomplete="email">
+        <p class="error" style="font-size: 12px;" *ngIf="giveForm.get('email').invalid && formSubmitted">E-mail required</p>
+      </div>
+  
+      <div class="form-row mb-4">
+        <div class="col-md-6 col-sm-12 mb-4">
+            <!-- First name -->
+            <input formControlName="firstName" type="text" class="form-control z-depth-1" placeholder="First name" autocomplete="given-name">
+            <p class="error" style="font-size: 12px;" *ngIf="giveForm.get('firstName').invalid && formSubmitted">First Name required</p>
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input formControlName="lastName" type="text" class="form-control z-depth-1" placeholder="Last name" autocomplete="family-name">
+            <p class="error" style="font-size: 12px;" *ngIf="giveForm.get('lastName').invalid && formSubmitted">Last Name required</p>
+        </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-4">
+      <input formControlName="phone" appPhoneMask type="text" class="form-control z-depth-1" placeholder="Phone" autocomplete="tel">
+      <p class="error" style="font-size: 12px;" *ngIf="giveForm.get('phone').invalid && formSubmitted">Phone required</p>
+    </div>
+  
+    <p class="mb-2" style="color: black; text-align: left">Tithe Details</p>
+    <!-- Tithe -->
+    <div class="mb-4">
+      <input currencyMask formControlName="tithe" type="text" class="form-control z-depth-1" placeholder="Tithe Amount">
+      <p class="error" style="font-size: 12px;" *ngIf="giveForm.errors && giveForm.errors.oneRequired && formSubmitted">Tithe or Offering must be provided</p>
+    </div>
+
+    <p class="mb-2" style="color: black; text-align: left">Offering Details <br><span style="font-size: 12px"><em>(General Offering, Building Fund, etc)</em></span><br>
+      <span class="error" style="font-size: 12px;" *ngIf="giveForm.errors && giveForm.errors.oneRequired && formSubmitted">Tithe or Offering must be provided</span></p>
+    
+    <div class="border border-light z-depth-1 mb-2" style="padding: 15px" formArrayName="offeringArray" *ngFor="let form of offeringArray.controls; let i = index">
+      <ng-container>
+        <div class="form-row mb-2">
+          <p style="color: black; text-align: left">Item {{ i+1 }} <br>
+            <span class="error" style="font-size: 12px;" *ngIf="form.errors && form.errors.offeringRequired && formSubmitted">Offering required.<br>Remove or fill in to continue.</span></p>
+        </div>
+        <div class="form-row mb-2" [formGroupName]="i">
+          <div class="mb-4 col-md-6 col-sm-12">
+            <!-- Offering -->
+            <input currencyMask formControlName="offering" type="text" class="form-control z-depth-1" placeholder="Offering Amount">
+          </div>
+          <div class="mb-2 col-md-6 col-sm-12">
+            <select formControlName="offeringCategory" class="browser-default custom-select z-depth-1 form-control">
+              <option [ngValue]="null">Select</option>
+              <option *ngFor="let cat of categories(offeringArray)" [disabled]="cat.disabled" [ngValue]="cat.value">{{ cat.label }}</option>
+            </select>
+            <p class="error" style="font-size: 12px;" *ngIf="form.errors && form.errors.categoryRequired && formSubmitted">A category must be selected</p>
+          </div>
+          <div class="mb-2 col-md-12 otherType" *ngIf="validateOther(form)">
+            <input formControlName="otherType" type="text" class="form-control z-depth-1" placeholder="General Offering, Building Fund, etc">
+            <p class="error" style="font-size: 12px;" *ngIf="form.errors && form.errors.otherRequired && formSubmitted">An other offering type must be specified</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="form-row mb-4">
+      <a class="btn-floating button btn-sm" (click)="addOffering()" *ngIf="!(offeringArray.controls.length >= 1)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <a class="btn-floating button btn-sm" (click)="addOffering()" *ngIf="offeringArray.controls.length >= 1 && lastOfferingControls.get('offering').value !== 0 && lastOfferingControls.get('offeringCategory').value !== null && offeringArray.controls.length !== 6"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <a class="btn-floating button btn-sm" (click)="popOffering()" *ngIf="offeringArray.controls.length > 0"><i class="fa fa-minus" aria-hidden="true"></i></a>
+    </div>
+
+    <div class="custom-control custom-checkbox mb-4 form-row">
+      <input formControlName="feeCover" type="checkbox" class="custom-control-input z-depth-1" id="defaultContactFormCopy">
+      <label class="custom-control-label" for="defaultContactFormCopy">Help cover the card processing fee?<br><em style="font-size: 12px">Leave unchecked if you have cash in your Paypal Account<br>Total + (2.2% + $0.30)</em></label>
+    </div>
+
+    <div class="form-row mb-5" style="border-bottom: 1px solid #cccdce;">
+      <p class="mb-2" style="color: black; text-align: center; width: 100%"><strong>Giving Total:</strong> {{ giveTotal | currency }} <em style="font-size: 10px" *ngIf="giveControls.feeCover.value">(2.2% + $0.30)</em></p>
+    </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <a mdbBtn class="waves-light button btn-outline btn-block mb-3 z-depth-1" style="font-size: 15px;" (click)="clearForm()">Reset</a>
+        </div>
+        <div id="paypal-button-container" class="col-md-8">
+          <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitForm()">Give</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

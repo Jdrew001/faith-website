@@ -1,0 +1,58 @@
+<div class="view">
+  <div class="heading wow fadeIn" [style.background]="'url('+ headingImgUrl+')'">
+    <div class="bg-fill rgba-stylish-strong">]
+      <h1 class="text-center">BIBLE STUDIES</h1>
+      <div class="container">
+        <p>As disciples, we believe that there is significance in both preaching and teaching.
+          <br>At 10:00 we start a teaching series. There are different classes for different age groups.
+          <br>At 10:45 we start worship service followed by preaching including the entire congregation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bible-content container">
+    <div class="controls text-center" style="padding-bottom: 15px;">
+      <button mdbBtn mdbWavesEffect (click)="carousel.previousSlide()">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </button>
+      <button mdbBtn mdbWavesEffect (click)="carousel.nextSlide()">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <mdb-carousel #carousel [animation]="'slide'" [ngSwitch]="carouselDisplayMode" [isControls]="true"
+      class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'" [interval]="'0'">
+      <ng-container *ngSwitchCase="'single'">
+        <mdb-carousel-item *ngFor="let card of cards">
+          <mdb-card class="my-1">
+            <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h4> {{ card.title }}</h4>
+              </mdb-card-title>
+              <p>{{ card.description }}</p>
+              <a href="#" mdbBtn color="primary" class="waves-light button" mdbWavesEffect>{{card.buttonText}}</a>
+            </mdb-card-body>
+          </mdb-card>
+        </mdb-carousel-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'multiple'">
+        <mdb-carousel-item *ngFor="let item of slides; let i = index">
+          <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
+            <mdb-card class="my-1">
+              <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+              <mdb-card-body>
+                <mdb-card-title>
+                  <h4>{{card.title}}</h4>
+                </mdb-card-title>
+                <p>{{card.description}}</p>
+                <a href="#" mdbBtn class="waves-light button" mdbWavesEffect>{{card.buttonText}}</a>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </mdb-carousel-item>
+      </ng-container>
+    </mdb-carousel>
+  </div>
+
+</div>

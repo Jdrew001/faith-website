@@ -1,0 +1,20 @@
+<div class="view wow fadeIn">
+  <video class="video-intro" [poster]="imageUrl" playsinline autoplay muted loop>
+    <source [src]="videoUrl" type="video/mp4">
+  </video>
+  <div class="mask flex-center rgba-blue-grey-strong">
+    <div class="img-container text-center rellax" data-rellax-speed="3">
+      <h1><strong>Welcome<br>Home</strong></h1>
+    </div>
+    <div class="bottom-bar">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-md-4 col-sm-12 times" [innerHtml]="homeContent?.service_times">
+          </div>
+          <div class="col-md-4 address" [innerHtml]="homeContent?.address">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

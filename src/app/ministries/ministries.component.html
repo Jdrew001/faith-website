@@ -1,0 +1,16 @@
+<div class="ministry-global">
+  <div *ngFor="let item of ministryContent.ministrySection" class="section-container">
+    <div class="youth-heading wow fadeIn" [style.background]="'url('+ loadImage(item) +')'">
+      <div class="bg-fill rgba-blue-grey-strong">
+        <div class="container">
+          <h1>{{ item?.title }}</h1>
+          <span [innerHtml]="item?.description"></span>
+          <div class="footer">
+            <!--<a mdbBtn class="waves-light button">View Details</a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

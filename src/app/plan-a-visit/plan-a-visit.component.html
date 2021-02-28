@@ -1,0 +1,50 @@
+<div class="">
+  <div class="heading view intro wow fadeIn" [style.background]="'url('+ imageUrl +')'">
+    <div class="bg-fill rgba-blue-grey-strong">
+      <h1 class="text-center animated fadeIn">{{ visitContent?.heading?.title }}</h1>
+      <div class="container" [innerHtml]="visitContent?.heading?.subTitle">
+          <!-- <p>As disciples, we believe that there is significance in both preaching and teaching. 
+          <br>At 10:00 we start a teaching series. There are different classes for different age groups. 
+          <br>At 10:45 we start worship service followed by preaching including the entire congregation.</p> -->
+      </div>
+    </div>
+  </div>
+  <div class="visit-body container">
+    <div class="expect wow fadeIn text-center container">
+      <h1 class="text-center">{{ visitContent?.pageTitle }}</h1>
+      <div class="row justify-content-center expect-content">
+          <div class="text-content col-lg-5">
+            <div class="service-heading">
+              <h2>{{ visitContent?.serviceTimes.title }}</h2>
+            </div>
+            <div class="visit-body" [innerHtml]="visitContent?.serviceTimes?.times">
+          </div>
+          </div>
+      </div>
+
+      <div class="row justify-content-center expect-content" *ngFor="let item of visitContent?.visitDetails">
+          <div class="text-content col-lg-5">
+            <div class="service-heading">
+              <h2>{{ item.title }}</h2>
+            </div>
+            <div class="visit-body" [innerHtml]="item.description">
+              
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row justify-content-center expect-content">
+            <div class="text-content col-lg-5">
+              <div class="service-heading">
+                <h2>What do I wear?</h2>
+              </div>
+              <div class="visit-body">
+                <p>We have a “come as you are” policy. 
+                  Some people wear jeans and a t-shirt while some like to dress in business wear. 
+                  Wear what is comfortable to you.</p>
+              </div>
+            </div>
+          </div> -->
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,15 @@
+h1, h2, h3, h4, h5, p, a {
+    color: black;
+}
+
+.badge-item {
+    background-color: red;
+    border-radius: 30px;
+    font-size: 9px;
+    padding: 0px;
+    position: absolute;
+    top: 18px;
+    height: 10px;
+    width: 10px;
+    line-height: normal;
+}

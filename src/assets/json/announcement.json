@@ -1,0 +1,24 @@
+[{
+    "id": 1,
+    "title": "Announcement",
+    "description": "This is an announcement that is required",
+    "date": "02/23/2020"
+},
+{
+    "id": 2,
+    "title": "Announcement",
+    "description": "This is an announcement that is required",
+    "date": "02/23/2020"
+},
+{
+    "id": 3,
+    "title": "Announcement",
+    "description": "This is an announcement that is required",
+    "date": "02/23/2020"
+},
+{
+    "id": 4,
+    "title": "Announcement",
+    "description": "This is an announcement that is required",
+    "date": "02/23/2020"
+}]

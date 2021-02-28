@@ -1,0 +1,22 @@
+<!--
+    The home page skeleton
+
+    Each tag below is a seperate section on the webpage
+
+-->
+
+<app-heading (deferLoad)="showMyElement=true" [showMyElement]="showMyElement" [homeContent]="homeContent"></app-heading>
+
+<app-announcements></app-announcements>
+
+<app-plan-a-visit-section [homeContent]="homeContent"></app-plan-a-visit-section>
+
+<app-iamglobal-section [homeContent]="homeContent"></app-iamglobal-section>
+
+<app-biblestudy-section [homeContent]="homeContent"></app-biblestudy-section>
+
+<app-about-section [homeContent]="homeContent"></app-about-section>
+
+<!-- <app-mobile-section></app-mobile-section> -->
+
+<app-special-alert></app-special-alert>

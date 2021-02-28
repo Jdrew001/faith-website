@@ -1,0 +1,23 @@
+h1, h2, h3, h4, h5, h6, p {
+    color: black !important;
+}
+
+img.warning-sign {
+    filter: invert(38%) sepia(62%) saturate(4598%) hue-rotate(342deg) brightness(88%) contrast(98%);
+}
+
+i, p {
+    filter: invert(38%) sepia(62%) saturate(4598%) hue-rotate(342deg) brightness(88%) contrast(98%);
+}
+
+div.row {
+    margin: 0em 0 !important;
+}
+
+.modal-dialog.modal-notify .modal-body {
+    padding: 0.8em !important;
+}
+
+.modal.modal-scrolling .modal-dialog {
+    z-index: 99999999 !important;
+}

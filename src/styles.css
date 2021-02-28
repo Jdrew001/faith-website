@@ -1,0 +1,323 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+/*global styles that will be throughout the application*/
+@font-face {
+    font-family: "roboto-light";
+    src: url(./assets/fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "roboto-regular";
+    src: url(./assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "roboto-thin";
+    src: url(./assets/fonts/Roboto/Roboto-Thin.ttf);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+body h1 {
+    font-family: "roboto-light", Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: white;
+    text-transform: uppercase;
+}
+
+body h2 {
+    font-size: 21px;
+    font-family: "roboto-thin", Arial, Helvetica, sans-serif;
+    color: white;
+    text-transform: uppercase;
+}
+
+body h3 {
+    font-family: "roboto-thin", Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: white;
+    text-transform: uppercase;
+}
+
+body p {
+    font-family: "roboto-regular", Arial, Helvetica, sans-serif;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 15px;
+}
+
+body a {
+    text-decoration: none;
+    color: white;
+    font-family: "roboto-light", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    
+}
+
+body div.card h3 {
+    font-family: 'roboto-regular', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+body div.card p {
+    font-family: 'roboto-regular', Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+body a.button {
+    background-color: #E02E2E;
+    color: white !important;
+}
+
+div.card.card-image {
+    min-height: 250px !important;
+}
+
+body button.button {
+    background-color: #E02E2E;
+    color: white !important;
+}
+
+div.app-container {
+    margin: 2em 2em !important;
+}
+
+div.row {
+    margin: 1em 0 !important;
+}
+
+div.md-form {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+/*table styles*/
+:host >>> p.card-text {
+    margin: 0px !important;
+    padding:0px !important;
+}
+
+:host >>> p.card-text i:hover {
+    cursor: pointer;
+}
+
+
+/*table styles*/
+:host >>> .ngx-datatable {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+:host >>> .datatable-row-center {
+    width: 100% !important;
+}
+
+:host >>> .datatable-header-inner {
+    width: 100% !important;
+}
+
+:host >>> .datatable-header {
+    background-color: white;
+    height: 100% !important;
+}
+
+:host >>> .datatable-header-cell {
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+:host >>> .datatable-scroll {
+    width: 100% !important;
+}
+
+:host >>> .datatable-body-row {
+    width: 100% !important;
+    height: auto !important;
+}
+
+:host >>> .datatable-row-even {
+    background-color: rgba(0,0,0,.05) !important;
+}
+
+:host >>> .datatable-body-cell {
+    height: auto !important;
+    border: 1px solid #dee2e6;
+    padding: 1em 0em;
+}
+
+:host >>> .datatable-body-row:hover {
+    cursor: pointer !important;
+}
+
+:host >>> .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #dee2e6 !important;
+}
+
+img {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+mdb-toast-component.md-toast-error {
+    opacity: 1 !important;
+}
+
+mdb-toast-component.md-toast-success {
+    opacity: 1 !important;
+}
+
+mdb-toast-component.md-toast-info {
+    opacity: 1 !important;
+}
+
+.modal.modal-scrolling {
+    position: fixed !important;
+}
+
+/*table styles*/
+:host >>> .ngx-datatable {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+:host >>> .datatable-row-center {
+    width: 100% !important;
+}
+
+:host >>> .datatable-header-inner {
+    width: 100% !important;
+}
+
+:host >>> .datatable-header {
+    background-color: white;
+    height: 100% !important;
+}
+
+:host >>> .datatable-header-cell {
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+:host >>> .datatable-scroll {
+    width: 100% !important;
+}
+
+:host >>> .datatable-body-row {
+    width: 100% !important;
+    height: auto !important;
+    cursor: pointer !important;
+}
+
+:host >>> .datatable-body-row:hover {
+    cursor: pointer !important;
+}
+
+:host >>> .datatable-body-row:active {
+    background-color: none !important;
+}
+
+:host >>> .datatable-row-even {
+    background-color: rgba(0,0,0,.05) !important;
+}
+
+:host >>> .datatable-body-cell {
+    height: auto !important;
+    border: 1px solid #dee2e6;
+    padding: 1em 0em;
+}
+
+.disabled-button {
+    background-color: rgb(177, 177, 177) !important;
+}
+
+.md-form .form-control:disabled {
+    color: rgb(177, 177, 177) !important;
+}
+
+mdb-select div.disabled div.value {
+    color: rgb(177, 177, 177) !important;
+}
+
+mdb-select div.disabled div.option {
+    color: rgb(177, 177, 177) !important;
+}
+
+mdb-select div.disabled div.option deselect-option {
+    color: rgb(177, 177, 177) !important;
+}
+
+mdb-select .form-control .placeholder {
+    color: #495057 !important;
+}
+
+.filter-active {
+    background-color:#ececec !important;
+}
+
+:host >>> .datatable-row-group:hover {
+    cursor: pointer !important;
+}
+
+.jumbotron {
+    background-color: #F8F8FF !important;
+}
+
+.black-font {
+    color: black !important;
+}
+
+.white-font {
+    color: white !important;
+}
+
+/* in-flight clone */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+  }
+  /* high-performance display:none; helper */
+  .gu-hide {
+    left: -9999px !important;
+  }
+  /* added to mirrorContainer (default = body) while dragging */
+  .gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+  }
+  /* added to the source element while its mirror is dragged */
+  .gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+  }
+
+p.error {
+    color: red !important;
+    text-align: left !important;
+    text-transform: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+@media (max-width: 576px) {
+    p {
+        font-size: 12px !important;
+    }
+}

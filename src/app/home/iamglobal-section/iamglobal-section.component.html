@@ -1,0 +1,49 @@
+
+<div class="about-bg">
+    <div class="container">
+      <!-- News jumbotron -->
+      <div class="jumbotron text-center hoverable p-4 jumbotron text-center hoverable p-4 mdb-color grey lighten-4 mx-2 mb-5" style="margin-top: 3em">
+  
+        <!-- Grid row -->
+        <div class="row">
+  
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+  
+            <!-- Featured image -->
+            <div class="view overlay waves-light" mdbWavesEffect>
+              <div class="rgba-stylish-strong">
+                <img [src]="imageUrl" alt="global missions">
+              </div>
+                
+              <!--<a>
+                <div class="mask rgba-white-slight"></div>
+              </a>-->
+            </div>
+  
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-7 col-sm-12 col-xs-12 text-md-left ml-3 mt-3">
+  
+            <!-- Excerpt -->
+            <h6 class="h6 pb-1"></h6>
+  
+            <h4 class="h4 mb-4">{{ homeContent?.missions?.title }}</h4>
+            <div [innerHtml]="homeContent?.missions?.description">
+            </div>
+  
+            <!--<a mdbBtn class="waves-light button">Read More</a>-->
+  
+          </div>
+          <!-- Grid column -->
+  
+        </div>
+        <!-- Grid row -->
+  
+      </div>
+      <!-- News jumbotron -->
+    </div>
+  </div>
+  

@@ -1,0 +1,1 @@
+curl –user dtatkison:API-Token http://142.93.89.244:8080/job/faith-website/build?token=112a2976b2ead8ea3115af8b33bc674670

@@ -1,0 +1,109 @@
+
+/*
+#64777D
+50%
+*/
+:host >>> nav.navbar {
+    width: 100% !important;
+    height: 4em !important;
+    z-index: 99999;
+    background-color: #516065;
+}
+
+:host >>> nav.navbar .container {
+    margin-left: 0px !important;
+}
+
+mdb-navbar-brand {
+    width: 25% !important;
+}
+
+mdb-navbar-brand img {
+    box-shadow: none;
+    width: 50% !important;
+}
+
+:host >>> .navbar-collapse {
+    width: 100% !important;
+}
+
+/*link style*/
+:host >>> nav.navbar ul {
+    line-height: 4em !important;
+    margin: auto;
+}
+
+:host >>> nav.navbar li {
+    margin: auto !important;
+    padding: 0px 5px !important;
+}
+
+:host >>> nav.navbar a {
+    line-height: 10px;
+    color: white
+}
+
+:host >>> nav.navbar a:hover {
+    color: #E02E2E;
+}
+
+:host >>> .nav-item.active {
+    background-color: none !important;
+    border-bottom: 1px solid #E02E2E;
+}
+
+@media (max-width: 768px) {
+    :host >>> nav.navbar {
+        padding: 0px !important
+    }
+
+    :host >>> .navbar-toggler-icon {
+        filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(226deg) brightness(106%) contrast(101%);
+        background-image: url("/assets/images/hambtn.svg?color=FFFFFF") !important;
+    }
+
+    mdb-navbar-brand {
+        width: 50% !important;
+        padding: 10px !important;
+    }
+    
+    mdb-navbar-brand img {
+        box-shadow: none;
+        width: 50% !important;
+    }
+
+    :host >>> .navbar-toggler-icon:hover {
+        cursor: pointer;
+    }
+    
+    :host >>> .nav-item:focus {
+        border: none !important;
+    }
+    
+    :host >>> .nav-item.active {
+        border:none !important;
+        background-color: none !important;
+    }
+    
+    :host >>> li.active a {
+        color: #E02E2E !important;
+        background-color: none !important;
+    }
+    
+    :host >>> .navbar-collapse {
+        background-color:  RGBA(40,47,53,0.85);
+    }
+    
+    :host >>> .navbar-collapse a {
+        color: white !important;
+    }
+    
+    :host >>> .navbar-nav {
+        height: 500px !important;
+        font-size: 22px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    
+}

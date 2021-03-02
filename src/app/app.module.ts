@@ -28,6 +28,7 @@ import { ServicesComponent } from './services/services.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { VisitorFormModule } from './administration/visitor/visitor-form/visitor-form.module';
 import { WatchComponent } from './watch/watch.component';
+import { WatchService } from './watch/watch.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,9 @@ import { WatchComponent } from './watch/watch.component';
     ToastModule,
     GiveModule
   ],
-  providers: [],
+  providers: [
+    WatchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

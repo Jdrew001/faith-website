@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 
 import videojs from 'video.js';
+import { WatchService } from './watch.service';
+import { WatchContent } from './watch.model';
 
 declare var require: any;
 require('videojs-contrib-quality-levels');
@@ -18,13 +20,25 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   url: string = 'http://206.81.10.146:8080/hls/test.m3u8';
   public player: videojs.Player;
   isLive = true;
+  watchContent = new WatchContent();
 
   constructor(
-    private helperService: HelperService
+    private helperService: HelperService,
+    private watchService: WatchService
   ) { }
 
   ngOnInit() {
-    this.watchImageUrl = this.helperService.getResourceUrl('images/worship.jpg', true);
+    this.loadWatchContent();
+  }
+
+  loadWatchContent() {
+    this.watchService.fetchWatchContent().subscribe(val => {
+      console.log(val);
+      this.watchContent = val;
+      this.watchImageUrl = this.helperService.getCMSResource(this.watchContent.image.url);
+    }, err => {
+      this.watchImageUrl = this.helperService.getResourceUrl(this.watchContent.image.url, true);
+    });
   }
 
   ngAfterViewInit() {
@@ -35,7 +49,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       ],
       liveui: true,
-      'poster' : '../../../assets/images/live.png'
+      'poster' : '../../../assets/images/livestream.jpg'
     };
     this.player = videojs('faith-tab-video', options, function onPlayerReady() {
       console.log('Player ready');

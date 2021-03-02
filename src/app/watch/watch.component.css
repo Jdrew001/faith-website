@@ -7,7 +7,7 @@ div.watch-container div.watch-heading {
 }
 
 div.container {
-    padding-top: 10em !important;
+    padding-top: 30vh !important;
 }
 
 div.bg-fill  {
@@ -24,4 +24,19 @@ div.bg-fill  {
     position: unset !important;
     top: unset !important;
     bottom: unset !important;
+}
+
+.promo-content {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: 7em !important;
+}
+
+@media (max-width: 576px) {
+
+    div.container {
+        padding-top: 35vh !important;
+    }
+    .promo-content {
+        font-size: 3em !important;
+    }
 }

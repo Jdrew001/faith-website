@@ -112,6 +112,17 @@ div.md-form {
     cursor: pointer;
 }
 
+.promo-content {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: 7em !important;
+}
+
+@media (max-width: 576px) {
+    .promo-content {
+        font-size: 3em !important;
+    }
+}
+
 
 /*table styles*/
 :host >>> .ngx-datatable {

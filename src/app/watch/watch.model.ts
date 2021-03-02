@@ -8,7 +8,7 @@ export class WatchContent {
     constructor() {
         this.image = this.createImage('images/livestream.jpg');
         this.remoteImage = false;
-        this.content = `<h1 class="promo-content">Sunday 10:45 am</h1><h1 class="promo-content">Wednesday 7:30 pm</h1><a mdbBtn class="waves-light button" href="https://www.facebook.com/faithtabernacle.arlington">Watch Here</a>`;
+        this.content = `<h1 class="promo-content">Sunday 10:45 am</h1><h1 class="promo-content">Wednesday 7:30 pm</h1>`;
     }
 
     private createImage(url) {

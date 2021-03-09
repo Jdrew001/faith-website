@@ -47,7 +47,7 @@ export class VisitContent {
         this.serviceTimes = {
             id: 1,
             title: 'SERVICE TIMES',
-            times: `<p class="black-font"><em>Sundays</em><br><em>10:00 AM Service</em></p><p class="black-font"><em>Wednesdays</em><br><em>7:30 PM Service</em></p>`
+            times: `<p class="black-font"><em>Sunday School</em><br><em>10:00 AM</em></p><p class="black-font"><em>Sunday Worship</em><br><em>10:45 AM</em></p><p class="black-font"><em>Wednesdays</em><br><em>7:30 PM Service</em></p>`
         }
     }
 
@@ -68,7 +68,7 @@ export class VisitContent {
             {
                 id: 1,
                 title: 'WHAT ABOUT MY KIDS?',
-                description: `<p class="black-font">Kids classes are temporily postponed due to covid. This is a fun and interactive way for them to learn about Jesus in their own space. </p>`
+                description: `<p class="black-font">Sunday school classes for ages 3 - 17 start at 10:00 am on Sundays. This is a fun and interactive way for students to learn about Jesus in their own space. </p><p class="black-font">Join us for coffee and fellowship while kids Sunday School classes are in session.</p>`
             }
         ]
     }

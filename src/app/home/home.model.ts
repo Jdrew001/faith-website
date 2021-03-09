@@ -38,7 +38,7 @@ export class HomeContent {
     }
 
     private initAddressTimes() {
-        this.service_times = `<h2>Service Times</h2><p>Sundays: 10:00 am</p><p>Wednesdays: 7:30 pm</p>`;
+        this.service_times = `<h2>Service Times</h2><p>Sunday School: 10:00 am</p><p>Main Worship: 10:45 am</p><p>Wednesdays: 7:30 pm</p>`;
         this.address = `<h2 style="margin-bottom: 10px;">507 E Randol Mill Rd</h2><h2>Arlington, TX 76011</h2>`;
     }
 

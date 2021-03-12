@@ -71,10 +71,10 @@ export class GiveService {
       sessionStorage.setItem('feeCover', formValue['feeCover'])
       this.loaderService.toggleLoader(false);
       console.log('offerings', JSON.stringify(formValue['offeringArray']));
-      this.handleCompletedOrder('COMPLETED');
-      // setTimeout(function(){
-      //   location.href = item['links'][1]['href'];
-      // },250);
+      //this.handleCompletedOrder('COMPLETED'); Testing only
+      setTimeout(function(){
+        location.href = item['links'][1]['href'];
+      },250);
     });
   }
 

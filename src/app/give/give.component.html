@@ -66,7 +66,7 @@
             <p class="error" style="font-size: 12px;" *ngIf="form.errors && form.errors.categoryRequired && formSubmitted">A category must be selected</p>
           </div>
           <div class="mb-2 col-md-12 otherType" *ngIf="validateOther(form)">
-            <input formControlName="otherType" type="text" class="form-control z-depth-1" placeholder="General Offering, Building Fund, etc">
+            <input formControlName="otherOffering" type="text" class="form-control z-depth-1" placeholder="General Offering, Building Fund, etc">
             <p class="error" style="font-size: 12px;" *ngIf="form.errors && form.errors.otherRequired && formSubmitted">An other offering type must be specified</p>
           </div>
         </div>

@@ -19,7 +19,7 @@ export class GiveFormValidator {
     validateOfferingOther(giveForm: AbstractControl) {
         const offeringControl = giveForm.get('offering');
         const offeringCat = giveForm.get('offeringCategory');
-        const offeringOther = giveForm.get('otherType');
+        const offeringOther = giveForm.get('otherOffering');
         
         if (offeringControl && offeringControl.value !== 0) {
             console.log('Offering Other', offeringOther.value);

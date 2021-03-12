@@ -94,7 +94,7 @@ export class GiveComponent implements OnInit, DoCheck {
     formArr.push(new FormGroup({
       offering: new FormControl(0),
       offeringCategory: new FormControl(null),
-      otherType: new FormControl(null)
+      otherOffering: new FormControl(null)
     }, [this.giveValidator.offeringRequired, this.giveValidator.validateOffering, this.giveValidator.validateOfferingOther]));
   }
 

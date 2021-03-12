@@ -66,11 +66,15 @@ export class GiveService {
       sessionStorage.setItem('offerings', JSON.stringify(formValue['offeringArray']));
       sessionStorage.setItem('firstName', formValue['firstName']);
       sessionStorage.setItem('lastName', formValue['lastName']);
+      sessionStorage.setItem('email', formValue['email']);
+      sessionStorage.setItem('phone', formValue['phone']);
       sessionStorage.setItem('feeCover', formValue['feeCover'])
       this.loaderService.toggleLoader(false);
-      setTimeout(function(){
-        location.href = item['links'][1]['href'];
-      },250);
+      console.log('offerings', JSON.stringify(formValue['offeringArray']));
+      this.handleCompletedOrder('COMPLETED');
+      // setTimeout(function(){
+      //   location.href = item['links'][1]['href'];
+      // },250);
     });
   }
 
@@ -101,25 +105,39 @@ export class GiveService {
       const titheAmount = sessionStorage.getItem('tithe');
       const offerings = JSON.parse(sessionStorage.getItem('offerings'));
       const user = sessionStorage.getItem('firstName') + ' ' + sessionStorage.getItem('lastName');
+      const firstName = sessionStorage.getItem('firstName');
+      const lastName = sessionStorage.getItem('lastName');
+      const email = sessionStorage.getItem('email');
+      const phone = sessionStorage.getItem('phone');
       const didCoverFee = sessionStorage.getItem('feeCover');
-      let offeringMessage = '';
-
       this.notificationService.displaySuccess('Online giving successfully completed', 'GIVING COMPLETED');
-      offerings.forEach(val => {
-        if (val.offeringCategory === 'Other') {
-          offeringMessage += '<br>' + val.otherType + ': $' + val.offering + '';
-        } else {
-          offeringMessage += '<br>' + val.offeringCategory + ': $' + val.offering + '';
-        }
-      });
 
-      this.emailService.sendEmail('Tithe Amount: $' + titheAmount + '<br>Offerings: ' + (offeringMessage === '' ? 'None Provided' : offeringMessage) + '<br>Fee Covered: ' + (didCoverFee ? 'Yes' : 'No'), user);
-      //TODO: confirmation email -> this.emailService.sendUserConfirmationEmail('Tithe Amount: $' + titheAmount + '<br>Offerings: ' + offeringMessage, user);
+      this.sendToServer(this.buildObj(firstName, lastName, titheAmount, offerings, email, phone, didCoverFee))
+        .subscribe(res => {console.log('COMPLETED', res)});
       sessionStorage.clear();
       this.location.replaceState(this.location.path().split('?')[0], '');
       return;
     }
-    this.notificationService.displayError('Online giving encounter an error', 'GIVING INCOMPLETE');
+    this.notificationService.displayError('Online giving encounter an error.', 'GIVING INCOMPLETE');
+  }
+
+  private sendToServer(body) {
+    let url = this.helperService.getCMSResource('/givings');
+    return this.httpClient.post(url, body);
+  }
+
+  private buildObj(firstname, lastname, tithe, offerings, email, phone, didCoverFee) {
+    console.log('offerings', offerings);
+    let obj = {
+      'firstName': firstname,
+      'lastName': lastname,
+      'email': email,
+      'phone': phone,
+      'tithe': tithe,
+      'feeCovered': didCoverFee,
+      offerings: offerings
+    }
+    return obj;
   }
 
   // utility method handle the first body

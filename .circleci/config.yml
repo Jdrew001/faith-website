@@ -19,7 +19,6 @@ workflows:
   build-then-deploy:
     jobs:
       - build-then-deploy-dev:
-        filters:
-          branches:
-            only:
-              - master
+          filters:
+            branches:
+              only: master

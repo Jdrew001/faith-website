@@ -33,7 +33,11 @@ export class NavigationComponent implements OnInit {
   }
 
   menuSubscription() {
-    this.scrollService.menuService$.subscribe(val => {val ? this.navbar.hide(): ''})
+    this.scrollService.menuService$.subscribe(val => {
+      if (val && this.navbar.shown) {
+        this.navbar.hide()
+      }
+    })
   }
 
   toggleNavbar(event) {

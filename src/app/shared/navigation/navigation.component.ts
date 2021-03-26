@@ -4,6 +4,7 @@ import { NavbarComponent, LinksComponent } from 'ng-uikit-pro-standard';
 import { SubscribeService } from 'src/app/core/services/subscribe.service';
 import { HelperService } from 'src/app/core/services/helper.service';
 import { SharedConstants } from '../shared-constants';
+import { ScrollService } from '../scroll.service';
 
 
 @Component({
@@ -18,12 +19,21 @@ export class NavigationComponent implements OnInit {
   logoUrl: string;
   showNavigation: boolean = true;
 
-  constructor(private subscribeService: SubscribeService, private helperService: HelperService,
-    private router: Router) { }
+  constructor(
+    private subscribeService: SubscribeService,
+    private helperService: HelperService,
+    private router: Router,
+    private scrollService: ScrollService
+    ) { }
 
   ngOnInit() {
     this.logoUrl = this.helperService.getResourceUrl('images/faith_tab_logo_white.png', true);
     this.validateNavigation();
+    this.menuSubscription();
+  }
+
+  menuSubscription() {
+    this.scrollService.menuService$.subscribe(val => {val ? this.navbar.hide(): ''})
   }
 
   toggleNavbar(event) {

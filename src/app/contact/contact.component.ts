@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { ContactConstant } from './contact.constant';
 import { SubscribeService } from '../core/services/subscribe.service';
@@ -10,6 +10,7 @@ import { ContactService } from './service/contact.service';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../core/services/notification.service';
 import { LoaderService } from '../core/loader/loader.service';
+import { ScrollService } from '../shared/scroll.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,6 +18,10 @@ import { LoaderService } from '../core/loader/loader.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
 
   headingImgUrl = "";
   site_key = environment.SITE_KEY;
@@ -37,7 +42,8 @@ export class ContactComponent implements OnInit {
       private contactService: ContactService,
       private subscribeService: SubscribeService,
       private notificationService: NotificationService,
-      private loaderService: LoaderService
+      private loaderService: LoaderService,
+      private scrollService: ScrollService
     ) { }
 
   ngOnInit() {

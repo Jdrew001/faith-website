@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
+import { ScrollService } from '../shared/scroll.service';
 import { AboutConstant } from './about.constant';
 
 @Component({
@@ -12,7 +13,14 @@ export class AboutComponent implements OnInit {
   aboutImageUrl: string;
   pastorImageUrl: string;
 
-  constructor(private helperService: HelperService) { }
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
+
+  constructor(
+    private helperService: HelperService,
+    private scrollService: ScrollService
+    ) { }
 
   ngOnInit() {
     this.aboutImageUrl = this.helperService.getResourceUrl(AboutConstant.ABOUT_IMG_URL, true);

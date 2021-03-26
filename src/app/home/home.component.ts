@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { HomeConstants } from './home.constants';
 import { SpecialAlertService } from '../shared/components/special-alert/special-alert.service';
 import { HomeContentService } from './home-content.service';
 import { HomeContent } from './home.model';
+import { ScrollService } from '../shared/scroll.service';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,15 @@ export class HomeComponent implements OnInit {
   mapImage: string;
   homeContent: HomeContent = new HomeContent();
 
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  }
+
   constructor(
     private helperService: HelperService,
     private specialService: SpecialAlertService,
-    private homeService: HomeContentService
+    private homeService: HomeContentService,
+    private scrollService: ScrollService
     ) { }
 
   ngOnInit() {

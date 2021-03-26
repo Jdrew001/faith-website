@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { MinistriesConstants } from './ministries.constants';
 
 import { Image } from "../shared/models/CMS_Model";
 import { MinistryService } from './ministry.service';
 import { MinistryContent } from './ministry.model';
+import { ScrollService } from '../shared/scroll.service';
 
 @Component({
   selector: 'app-ministries',
@@ -13,11 +14,16 @@ import { MinistryContent } from './ministry.model';
 })
 export class MinistriesComponent implements OnInit {
 
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
+
   ministryContent = new MinistryContent();
 
   constructor(
     private helperService: HelperService,
-    private ministriesService: MinistryService
+    private ministriesService: MinistryService,
+    private scrollService: ScrollService
     ) { }
 
   ngOnInit() {

@@ -13,6 +13,10 @@ export class BiblestudyComponent implements OnInit {
 
   @ViewChild('carousel') carousel: CarouselModule;
 
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    //this.scrollService.menuService$.next(true);
+  } 
+
   headingImgUrl = "";
   cardImgUrl = ""
   slides: any = [[]];

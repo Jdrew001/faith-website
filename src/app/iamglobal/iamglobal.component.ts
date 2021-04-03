@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { MissionConstant } from './mission.constant';
 declare var Rellax : any;
@@ -9,6 +9,10 @@ declare var Rellax : any;
   styleUrls: ['./iamglobal.component.css']
 })
 export class IamglobalComponent implements OnInit {
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    console.log('testing!!!');
+  } 
 
   headingImgUrl = '';
   globalImage = '';

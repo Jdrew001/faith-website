@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { VisitConstant } from './visit-constant';
 import { HomeConstants } from '../home/home.constants';
 import { VisitContent } from './visit.model';
 import { PlanAVisitService } from './plan-a-visit.service';
+import { ScrollService } from '../shared/scroll.service';
 
 @Component({
   selector: 'app-plan-a-visit',
@@ -12,12 +13,17 @@ import { PlanAVisitService } from './plan-a-visit.service';
 })
 export class PlanAVisitComponent implements OnInit {
 
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
+
   imageUrl = '';
   visitContent = new VisitContent();
 
   constructor(
     private helperService: HelperService,
-    private planAVisitService: PlanAVisitService
+    private planAVisitService: PlanAVisitService,
+    private scrollService: ScrollService
     ) { }
 
   ngOnInit() {

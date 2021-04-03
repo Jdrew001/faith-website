@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 
 import videojs from 'video.js';
 import { WatchService } from './watch.service';
 import { WatchContent } from './watch.model';
+import { ScrollService } from '../shared/scroll.service';
 
 declare var require: any;
 require('videojs-contrib-quality-levels');
@@ -16,6 +17,10 @@ require('videojs-hls-quality-selector');
 })
 export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
+
   watchImageUrl = '';
   url: string = 'http://206.81.10.146:8080/hls/test.m3u8';
   public player: videojs.Player;
@@ -24,7 +29,8 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private helperService: HelperService,
-    private watchService: WatchService
+    private watchService: WatchService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, AfterViewInit } from '@angular/core';
+import { Component, OnInit, DoCheck, AfterViewInit, HostListener } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { GiveConstants } from './give.constant';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
@@ -6,6 +6,7 @@ import { GiveFormValidator } from './utls/GiveValidator';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { GiveService } from './give.service';
 import { ActivatedRoute } from '@angular/router';
+import { ScrollService } from '../shared/scroll.service';
 
 @Component({
   selector: 'app-give',
@@ -13,6 +14,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./give.component.css']
 })
 export class GiveComponent implements OnInit, DoCheck {
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.scrollService.menuService$.next(true);
+  } 
 
   giveValidator = new GiveFormValidator();
   offeringCategories = [];
@@ -29,7 +34,11 @@ export class GiveComponent implements OnInit, DoCheck {
     feeCover: new FormControl(true)
   }, [this.giveValidator.oneRequired]);
 
-  constructor(private helperService: HelperService, private giveService: GiveService, private activeRoute: ActivatedRoute) { }
+  constructor(
+    private helperService: HelperService,
+    private giveService: GiveService,
+    private activeRoute: ActivatedRoute,
+    private scrollService: ScrollService) { }
 
   get giveControls() {
     return {

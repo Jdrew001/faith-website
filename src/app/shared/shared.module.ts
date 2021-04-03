@@ -15,6 +15,7 @@ import { FileUtilityService } from './utilities/FileUtilities';
 import { SpecialAlertComponent } from './components/special-alert/special-alert.component';
 import { SpecialAlertService } from './components/special-alert/special-alert.service';
 import { SanitizePipe } from './pipes/sanitize.pipe';
+import { ScrollService } from './scroll.service';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     ConfirmService,
     MessageService,
     FileUtilityService,
-    SpecialAlertService
+    SpecialAlertService,
+    ScrollService
   ],
   exports: [
     FooterComponent,

@@ -1,55 +1,54 @@
-<table class="table-container">
-  <tbody>
-    <tr>
-      <td class="align-middle">
-        <div class="container pb-5 pt- align-middle">
-          <div class="border border-light p-3 z-depth-2">
-            <div class="text-center">
-              <p class="h4 mb-4">Visitor Form</p>
-            </div>
-            <div>
-              <div class="row">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" [ngStyle]="{width: (activeFormIndex)*25+'%'}" aria-valuenow="(activeFormIndex)*25" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="outer-div" [style.background]="'url('+ backgroundImg +')'">
+  <div class="bg-fill rgba-stylish-strong">
+    <table class="table-container">
+      <tbody>
+        <tr>
+          <td class="align-middle">
+            <div class="container pb-5">
+              <div class="border border-light p-3 z-depth-2" style="background-color: white;">
+                <div class="text-center">
+                  <p class="h4 mb-4">Visitor Form</p>
+                </div>
+                <div>
+                  <div class="row">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{width: (activeFormIndex)*50+'%'}" aria-valuenow="(activeFormIndex)*50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+                <div [ngSwitch]="activeFormIndex">
+                  <div *ngSwitchCase="0" [@enterTrigger]="'fadeIn'">
+                    <app-basic-details></app-basic-details>
+                  </div>
+                  <div *ngSwitchCase="1" [@enterTrigger]="'fadeIn'">
+                    <app-contact-details></app-contact-details>
+                  </div>
+                  <div *ngSwitchCase="2" [@enterTrigger]="'fadeIn'">
+                    <app-visit-details></app-visit-details>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <!-- <div class="col-md-6">
+                    <a mdbBtn class="waves-light button btn-outline btn-block mb-3 z-depth-1 btn-sm" style="font-size: 15px;"
+                      (click)="previousForm()" [attr.disabled]="activeFormIndex === minBounds">Previous</a>
+                  </div> -->
+                  <div id="paypal-button-container" class="col-md-4">
+                    <a *ngIf="activeFormIndex !== maxBounds" mdbBtn class="waves-light button btn-block z-depth-1 btn-sm"
+                      style="font-size: 15px;" (click)="nextForm()">Continue</a>
+                    <a *ngIf="activeFormIndex === maxBounds" mdbBtn class="waves-light button btn-block z-depth-1 btn-sm"
+                      style="font-size: 15px;" (click)="submitForm()">Submit</a>
+                  </div>
+                  <div class="col-md-12 text-center mt-4">
+                    <strong><a style="font-size: 15px; text-decoration: underline; padding-top: 5px; color: #E02E2E;"
+                    (click)="previousForm()" [attr.disabled]="activeFormIndex === minBounds">Previous</a></strong>
+                  </div>
                 </div>
               </div>
             </div>
-            <div [ngSwitch]="activeFormIndex">
-              <div *ngSwitchCase="0" [@enterTrigger]="'fadeIn'">
-                <app-basic-details></app-basic-details>
-              </div>
-              <div *ngSwitchCase="1" [@enterTrigger]="'fadeIn'">
-                <app-contact-details></app-contact-details>
-              </div>
-              <div *ngSwitchCase="2" [@enterTrigger]="'fadeIn'">
-                <app-family-details></app-family-details>
-              </div>
-              <div *ngSwitchCase="3" [@enterTrigger]="'fadeIn'">
-                <app-visit-details></app-visit-details>
-              </div>
-              <div *ngSwitchCase="4" [@enterTrigger]="'fadeIn'">
-                <app-greeter-details></app-greeter-details>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <!-- <div class="col-md-6">
-                <a mdbBtn class="waves-light button btn-outline btn-block mb-3 z-depth-1 btn-sm" style="font-size: 15px;"
-                  (click)="previousForm()" [attr.disabled]="activeFormIndex === minBounds">Previous</a>
-              </div> -->
-              <div id="paypal-button-container" class="col-md-4">
-                <a *ngIf="activeFormIndex !== maxBounds" mdbBtn class="waves-light button btn-block z-depth-1 btn-sm"
-                  style="font-size: 15px;" (click)="nextForm()">Continue</a>
-                <a *ngIf="activeFormIndex === maxBounds" mdbBtn class="waves-light button btn-block z-depth-1 btn-sm"
-                  style="font-size: 15px;" (click)="submitForm()">Submit</a>
-              </div>
-              <div class="col-md-12 text-center mt-4">
-                <strong><a style="font-size: 15px; text-decoration: underline; padding-top: 5px; color: #E02E2E;"
-                (click)="previousForm()" [attr.disabled]="activeFormIndex === minBounds">Previous</a></strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

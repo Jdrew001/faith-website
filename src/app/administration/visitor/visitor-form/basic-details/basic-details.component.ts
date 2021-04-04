@@ -12,12 +12,23 @@ export class BasicDetailsComponent implements OnInit {
   basicForm: FormGroup;
   formSubmitted: boolean;
 
+  get fullNameField() { return this.basicForm.controls['fullName'].value; }
+  get addressField() { return this.basicForm.controls['address'].value; }
+  get cityField() { return this.basicForm.controls['city'].value };
+  get stateField() { return this.basicForm.controls['state'].value };
+
   constructor(private formService: VisitorFormService) {
     this.basicForm = this.formService.basicDetails;
     this.formSubmitted = this.formService.formSubmitted;
+
+    console.log(this.fullNameField);
   }
 
   ngOnInit() {
+  }
+
+  clearField(field) {
+    this.basicForm.controls[field].setValue('');
   }
 
 }

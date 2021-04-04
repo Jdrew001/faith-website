@@ -27,25 +27,23 @@ export class VisitorFormService {
     return this._visitorForm = new FormGroup({
       basicDetails: this.createBasicDetails(),
       contactDetails: this.createContactDetails(),
-      familyDetails: this.createFamilyDetails(),
-      visitDetails: this.createVisitDetails(),
-      greeterDetails: this.createGreeterDetails()
+      visitDetails: this.createVisitDetails()
     });
   }
 
   createBasicDetails(): FormGroup {
     return this._basicDetails = new FormGroup({
-      fullName: new FormControl(null, Validators.required),
-      address: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      state: new FormControl(null, Validators.required)
+      fullName: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      state: new FormControl('Texas', Validators.required)
     });
   }
 
   createContactDetails(): FormGroup {
     return this._contactDetails = new FormGroup({
-      phone: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required)
+      phone: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required)
     });
   }
 
@@ -65,12 +63,12 @@ export class VisitorFormService {
 
   createVisitDetails(): FormGroup {
     return this._visitDetails = new FormGroup({
-      firstTimeVisitor: new FormControl(null),
-      returningVisitor: new FormControl(null),
-      newResident: new FormControl(null),
-      wouldLikeVisit: new FormControl(null),
-      wouldLikeKnowChurch: new FormControl(null),
-      wouldLikeKnowChristian: new FormControl(null)
+      firstTimeVisitor: new FormControl(false),
+      returningVisitor: new FormControl(false),
+      newResident: new FormControl(false),
+      wouldLikeVisit: new FormControl(false),
+      wouldLikeKnowChurch: new FormControl(false),
+      wouldLikeKnowChristian: new FormControl(false)
     });
   }
 

@@ -5,6 +5,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { VisitorResourceService } from './visitor-resource.service';
 import { VisitorModel } from './models/Visitor.model';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { HelperService } from 'src/app/core/services/helper.service';
 
 @Component({
   selector: 'app-visitor-form',
@@ -23,17 +24,20 @@ export class VisitorFormComponent implements OnInit {
 
   activeFormIndex = 0;
   minBounds = 0;
-  maxBounds = 4;
+  maxBounds = 2;
   visitorForm: FormGroup;
+  backgroundImg
 
   constructor(
     private visitorFormService: VisitorFormService,
     private visitorResService: VisitorResourceService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private helperService: HelperService
     ) { }
 
   ngOnInit() {
     this.visitorForm = this.visitorFormService.createVisitorForm();
+    this.backgroundImg = this.helperService.getResourceUrl('images/worship.jpg', true);
   }
 
   submitForm() {

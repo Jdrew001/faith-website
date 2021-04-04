@@ -6,5 +6,5 @@ export class SharedConstants {
 
     public static EXCLUDED_URLS: string[] = ['/login', '/visitor-greeter', '/visitor-form','/administration/visitor-add', '/administration/visitor', 
     '/administration/dashboard', '/administration/announcement', '/administration/usermanagement', 
-    '/administration', '/administration/alerts'];
+    '/administration', '/visitor', '/administration/alerts'];
 }

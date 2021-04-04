@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'watch', component: WatchComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'visitor-form', component: VisitorFormComponent},
+  { path: 'visitor', component: VisitorFormComponent},
   { path: 'give', component: GiveComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '**', component: HomeComponent }

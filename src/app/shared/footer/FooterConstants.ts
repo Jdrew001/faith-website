@@ -5,5 +5,5 @@ export class FooterConstants {
 
     public static EXCLUDED_URLS: string[] = ['/login', '/administration/visitor-add', '/administration/visitor', '/administration/dashboard', 
         '/administration/usermanagement', '/administration/announcement', '/administration', '/visitor-greeter', '/visitor-form',
-        '/administration/alerts']; 
+        '/administration/alerts', '/visitor']; 
 }

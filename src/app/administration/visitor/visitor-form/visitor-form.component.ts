@@ -68,13 +68,13 @@ export class VisitorFormComponent implements OnInit {
   private handleSuccess(res) {
     this.loaderService.toggleLoader(false);
     this.activeFormIndex = 0;
-    this.notificationService.displaySuccess('Successfully Submitted', 'Success!');
+    this.notificationService.displaySuccess('Success!', 'Successfully Submitted');
     this.visitorForm.reset();
     this.visitorFormService.formSubmitted = false;
   }
 
   private handleError(err) {
     this.loaderService.toggleLoader(false);
-    this.notificationService.displayError('An error as occurred', 'Error');
+    this.notificationService.displayError('Error','An error as occurred');
   }
 }

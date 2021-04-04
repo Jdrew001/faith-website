@@ -1,3 +1,3 @@
 export class VisitorConst {
-    public static VISITOR_BASE = 'visitor';
+    public static VISITOR_BASE = '/visitors';
 }

@@ -31,3 +31,9 @@ img {
     box-shadow: unset !important;
     width: 60%;
 }
+
+p.h4 {
+    font-family: 'Oswald', sans-serif !important;
+    letter-spacing: 3px;
+    font-size: 15px !important;
+}

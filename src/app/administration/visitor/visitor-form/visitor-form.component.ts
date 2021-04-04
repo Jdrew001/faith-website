@@ -6,6 +6,7 @@ import { VisitorResourceService } from './visitor-resource.service';
 import { VisitorModel } from './models/Visitor.model';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { HelperService } from 'src/app/core/services/helper.service';
+import { LoaderService } from 'src/app/core/loader/loader.service';
 
 @Component({
   selector: 'app-visitor-form',
@@ -32,7 +33,8 @@ export class VisitorFormComponent implements OnInit {
     private visitorFormService: VisitorFormService,
     private visitorResService: VisitorResourceService,
     private notificationService: NotificationService,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private loaderService: LoaderService
     ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class VisitorFormComponent implements OnInit {
   submitForm() {
     this.visitorFormService.formSubmitted = true;
     if (this.visitorForm.valid) {
-      console.log('submit', this.visitorForm.value);
+      this.loaderService.toggleLoader(true);
       this.visitorResService.save(this.visitorForm.value as VisitorModel).subscribe(res => {
         this.handleSuccess(res);
       }, err => {
@@ -64,10 +66,15 @@ export class VisitorFormComponent implements OnInit {
   }
 
   private handleSuccess(res) {
-
+    this.loaderService.toggleLoader(false);
+    this.activeFormIndex = 0;
+    this.notificationService.displaySuccess('Successfully Submitted', 'Success!');
+    this.visitorForm.reset();
+    this.visitorFormService.formSubmitted = false;
   }
 
   private handleError(err) {
-
+    this.loaderService.toggleLoader(false);
+    this.notificationService.displayError('An error as occurred', 'Error');
   }
 }

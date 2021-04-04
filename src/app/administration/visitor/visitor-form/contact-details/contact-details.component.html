@@ -1,13 +1,23 @@
 <div [formGroup]="contactForm">
   <h5>Contact Details</h5>
-  <div class="mb-4">
-    <input formControlName="phone" type="text" class="form-control z-depth-1" placeholder="Phone">
-    <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('phone').invalid && formSubmitted">Phone required</p>
+  <div class="mb-4 form-row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input formControlName="phone" appPhoneMask type="text" class="form-control z-depth-1" placeholder="Phone">
+        <i *ngIf="phoneField !== '' && phoneField != null" (click)="clearField('phone')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('phone').invalid && formSubmitted">Phone required</p>
+      </div>
+    </div>
+    
   </div>
 
-  <div class="mb-4">
-    <input formControlName="email" type="email" class="form-control z-depth-1" placeholder="Email">
-    <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('email').invalid && formSubmitted">Email required</p>
+  <div class="mb-4 form-row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input formControlName="email" type="email" class="form-control z-depth-1" placeholder="Email">
+        <i *ngIf="emailField !== '' && emailField != null" (click)="clearField('email')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="contactForm.get('email').invalid && formSubmitted">Email required</p>
+      </div>
+    </div>
   </div>
-
 </div>

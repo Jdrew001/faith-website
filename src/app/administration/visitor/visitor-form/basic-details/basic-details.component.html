@@ -1,24 +1,41 @@
 <div [formGroup]="basicForm">
   <h5>Basic Details</h5>
   <span class="half-border"></span>
-  <div class="mb-4">
-    <input formControlName="fullName" type="text" class="form-control z-depth-1" placeholder="Full Name">
-    <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('fullName').invalid && formSubmitted">Full Name required</p>
+  <div class="mb-4 form-row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input formControlName="fullName" type="text" class="form-control z-depth-1" placeholder="Full Name">
+        <i *ngIf="fullNameField !== '' && fullNameField != null" (click)="clearField('fullName')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('fullName').invalid && formSubmitted">Full Name required</p>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <input formControlName="address" type="text" class="form-control z-depth-1" placeholder="Address">
-    <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('address').invalid && formSubmitted">Address required</p>
+  <div class="mb-4 form-row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input formControlName="address" type="text" class="form-control z-depth-1" placeholder="Address">
+        <i *ngIf="addressField !== '' && addressField != null" (click)="clearField('address')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('address').invalid && formSubmitted">Address required</p>
+      </div>
+    </div>
   </div>
 
   <div class="mb-4 form-row">
     <div class="col-md-6 col-sm-12 mb-4">
-      <input formControlName="city" type="text" class="form-control z-depth-1" placeholder="City">
-      <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('city').invalid && formSubmitted">City required</p>
+      <div class="form-group">
+        <input formControlName="city" type="text" class="form-control z-depth-1" placeholder="City">
+        <i *ngIf="cityField !== '' && cityField != null" (click)="clearField('city')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('city').invalid && formSubmitted">City required</p>
+      </div>
+      
     </div>
-    <div class="col">
-      <input formControlName="state" type="text" class="form-control z-depth-1" placeholder="State">
-      <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('state').invalid && formSubmitted">State required</p>
+    <div class="col-md-6 col-sm-12 mb-4">
+      <div class="form-group">
+        <input formControlName="state" type="text" class="form-control z-depth-1" placeholder="State">
+        <i *ngIf="stateField !== '' && stateField != null" (click)="clearField('state')" class="fa fa-times" aria-hidden="true"></i>
+        <p class="error" style="font-size: 12px;" *ngIf="basicForm.get('state').invalid && formSubmitted">State required</p>
+      </div>
     </div>
   </div>
 </div>

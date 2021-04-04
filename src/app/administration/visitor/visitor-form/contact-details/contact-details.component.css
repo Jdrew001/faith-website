@@ -5,3 +5,10 @@ p {
 p.error {
     color: #E02E2E !important;
 }
+
+i {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    color: #E02E2E;
+}

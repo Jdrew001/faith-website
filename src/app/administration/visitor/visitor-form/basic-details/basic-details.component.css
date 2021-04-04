@@ -10,3 +10,10 @@ span.half-border {
     width: 1px; top: 0px; bottom: 50%; left: 0px; 
     background-color: #E02E2E; overflow: hidden;
 }
+
+i {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    color: #E02E2E;
+}

@@ -6,9 +6,13 @@ import { HelperService } from 'src/app/core/services/helper.service';
 import { VisitorConst } from './models/visitor.constant';
 
 @Injectable()
-export class VisitorResourceService extends GenericResourceService<VisitorModel, number, string> {
+export class VisitorResourceService {
 
   constructor(protected http: HttpClient, protected helperService: HelperService) {
-    super(http, helperService.getResourceUrl(VisitorConst.VISITOR_BASE, false));
+  }
+
+  save(data) {
+    const url = this.helperService.getCMSResource(VisitorConst.VISITOR_BASE);
+    return this.http.post(url, data);
   }
 }

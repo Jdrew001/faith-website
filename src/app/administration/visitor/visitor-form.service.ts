@@ -43,7 +43,7 @@ export class VisitorFormService {
   createContactDetails(): FormGroup {
     return this._contactDetails = new FormGroup({
       phone: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email])
     });
   }
 

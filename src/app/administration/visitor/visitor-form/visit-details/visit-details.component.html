@@ -2,10 +2,10 @@
   <h5>Visit Details</h5>
   <div class="mb-4">
     <div class="mb-4">
-      <mdb-checkbox class="checkbox-filled" [filledIn]="true" formControlName="firstTimeVisitor">First-Time Visitor</mdb-checkbox>
+      <mdb-checkbox class="checkbox-filled" [disabled]="returningVisitor" [filledIn]="true" formControlName="firstTimeVisitor">First-Time Visitor</mdb-checkbox>
     </div>
     <div class="mb-4">
-      <mdb-checkbox class="checkbox-filled" [filledIn]="true" formControlName="returningVisitor">Returning Visitor</mdb-checkbox>
+      <mdb-checkbox class="checkbox-filled" [disabled]="firstTimeVisitor" [filledIn]="true" formControlName="returningVisitor">Returning Visitor</mdb-checkbox>
     </div>
     <div class="mb-4">
       <mdb-checkbox class="checkbox-filled" [filledIn]="true" formControlName="newResident">New Resident</mdb-checkbox>

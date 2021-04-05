@@ -76,7 +76,7 @@ export class GiveComponent implements OnInit, DoCheck {
     this.giveTotal = this.calculateTotal(titheAmount, this.offeringArray);
   }
 
-  submitForm() {
+  submitWithPaypal() {
     this.formSubmitted = true;
     this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
     if (this.giveForm.valid) {
@@ -84,6 +84,18 @@ export class GiveComponent implements OnInit, DoCheck {
       const formVal = this.giveForm.value;
       formVal.phone = formVal.phone.replace(/\D/g,"");
       this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
+    }
+  }
+  
+  submitWithStripe() {
+    this.formSubmitted = true;
+    this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
+    if (this.giveForm.valid) {
+      this.formSubmitted = false;
+      const formVal = this.giveForm.value;
+      formVal.phone = formVal.phone.replace(/\D/g,"");
+      // TODO: Integrate with stripe
+      //this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
     }
   }
 

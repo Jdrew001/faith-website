@@ -2,12 +2,27 @@ div.section-container {
     height: 100%;
 }
 
+.btn .fab, .btn .fab i {
+    font-size: 2.5rem !important;
+}
+::ng-deep .fab {
+    font-size: 2.5rem !important;
+}
 div.heading {
     height: 100vh;
     background-position: 65% !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-attachment: fixed !important;   
+}
+
+a.clear-btn {
+    border-bottom: 1px solid #E02E2E;
+    color: #E02E2E;
+}
+
+a.clear-btn:hover {
+    cursor: pointer;
 }
 
 div.heading div.bg-fill {

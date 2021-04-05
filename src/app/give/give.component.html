@@ -87,12 +87,21 @@
       <p class="mb-2" style="color: black; text-align: center; width: 100%"><strong>Giving Total:</strong> {{ giveTotal | currency }} <em style="font-size: 10px" *ngIf="giveControls.feeCover.value">(2.2% + $0.30)</em></p>
     </div>
   
+      <div class="row justify-content-center pay">
+        <div id="paypal-button-container" class="col-md-8">
+          <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitWithPaypal()"><mdb-icon fab icon="cc-paypal"></mdb-icon></a>
+        </div>
+      </div>
+
+      <div class="row justify-content-center pay">
+        <div class="col-md-8">
+          <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitWithStripe()"><mdb-icon fab icon="cc-stripe"></mdb-icon></a>
+        </div>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <a mdbBtn class="waves-light button btn-outline btn-block mb-3 z-depth-1" style="font-size: 15px;" (click)="clearForm()">Reset</a>
-        </div>
-        <div id="paypal-button-container" class="col-md-8">
-          <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitForm()">Give</a>
+          <a (click)="clearForm()" class="clear-btn">Clear</a>
         </div>
       </div>
     </div>

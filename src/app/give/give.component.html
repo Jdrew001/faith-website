@@ -12,7 +12,7 @@
         <div class="text-center border border-light p-5 z-depth-2">
       
           <p class="h4 mb-4">Online Giving</p>
-          <div *ngSwitchCase="0">
+          <div [@enterTrigger]="'fadeIn'" *ngSwitchCase="0">
             <p class="mb-2" style="color: black; text-align: left">Your Details</p>
             <!-- Email -->
             <div class="mb-4">
@@ -107,20 +107,25 @@
               </div>
             </div>
           </div>
-          <div *ngSwitchCase="1">
-            
-
-              <div class="row justify-content-center pay pb-5">
-                <div class="col-md-8">
-                  <ngx-stripe-card [options]="cardOpts" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-                </div>
+          <div [@enterTrigger]="'fadeIn'" *ngSwitchCase="1">
+            <p class="mb-2" style="color: black; text-align: left">Card Details</p>
+            <div class="row justify-content-center pay pb-5">
+              <div class="col-md-12 p-0">
+                <ngx-stripe-card [options]="cardOpts" [elementsOptions]="elementsOptions"></ngx-stripe-card>
               </div>
+            </div>
 
-              <div class="row justify-content-center pay">
-                <div class="col-md-8">
-                  <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="paymentWithStripe()">Submit</a>
-                </div>
+            <div class="row justify-content-center pay">
+              <div class="col-md-12 p-0">
+                <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="paymentWithStripe()">Submit</a>
               </div>
+            </div>
+
+            <div class="row justify-content-center pay">
+              <div class="col-md-12 p-0">
+                <a (click)="activeFormIndex = 0" class="clear-btn">Previous</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

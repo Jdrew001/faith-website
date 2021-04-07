@@ -10,11 +10,20 @@ import { ScrollService } from '../shared/scroll.service';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 import { NotificationService } from '../core/services/notification.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-give',
   templateUrl: './give.component.html',
-  styleUrls: ['./give.component.css']
+  styleUrls: ['./give.component.css'],
+  animations: [
+    trigger('enterTrigger', [
+    state('fadeIn', style({
+        opacity: '1'
+    })),
+    transition('void => *', [style({opacity: '0'}), animate('500ms')])
+    ])
+  ]
 })
 export class GiveComponent implements OnInit, DoCheck {
 

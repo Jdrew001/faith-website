@@ -6,6 +6,7 @@ import { GiveService } from './give.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
+import { NgxStripeModule } from 'ngx-stripe';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     align: "left",
@@ -26,7 +27,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    NgxStripeModule.forRoot('pk_test_51IWOf3A0DJoBf0VzbZR7l3xohneGilLnLoYtjesw2BED5SqjGsV8TZa2Xx9d68RCFlmAN87ErPgQhx9UMT1yrC1400omCjotV3')
   ],
   providers: [
     GiveService,

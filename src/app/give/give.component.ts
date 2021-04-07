@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, DoCheck, AfterViewInit, HostListener, ViewChild } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { GiveConstants } from './give.constant';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
@@ -7,6 +7,9 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
 import { GiveService } from './give.service';
 import { ActivatedRoute } from '@angular/router';
 import { ScrollService } from '../shared/scroll.service';
+import { StripeService, StripeCardComponent } from 'ngx-stripe';
+import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
   selector: 'app-give',
@@ -19,7 +22,10 @@ export class GiveComponent implements OnInit, DoCheck {
     this.scrollService.menuService$.next(true);
   } 
 
+  @ViewChild(StripeCardComponent) card: StripeCardComponent;
+
   giveValidator = new GiveFormValidator();
+  activeFormIndex = 0;
   offeringCategories = [];
   imageUrl = '';
   formSubmitted = false;
@@ -34,11 +40,35 @@ export class GiveComponent implements OnInit, DoCheck {
     feeCover: new FormControl(true)
   }, [this.giveValidator.oneRequired]);
 
+  cardOpts: StripeCardElementOptions = {
+    hidePostalCode: true,
+    iconStyle: 'solid',
+    style: {
+      base: {
+        backgroundColor: '#f7f7f7',
+        iconColor: '#E02E2E',
+        color: '#31325F',
+        lineHeight: '50px',
+        fontWeight: '300',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSize: '14px',
+        '::placeholder': {
+          color: '#CFD7E0',
+        },
+      },
+    }
+  }
+  elementsOptions: StripeElementsOptions = {
+    locale: 'en',
+  };
+
   constructor(
     private helperService: HelperService,
     private giveService: GiveService,
     private activeRoute: ActivatedRoute,
-    private scrollService: ScrollService) { }
+    private scrollService: ScrollService,
+    private stripeService: StripeService,
+    private notificationService: NotificationService) { }
 
   get giveControls() {
     return {
@@ -88,15 +118,30 @@ export class GiveComponent implements OnInit, DoCheck {
   }
   
   submitWithStripe() {
+    
     this.formSubmitted = true;
     this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
     if (this.giveForm.valid) {
       this.formSubmitted = false;
       const formVal = this.giveForm.value;
       formVal.phone = formVal.phone.replace(/\D/g,"");
-      // TODO: Integrate with stripe
-      //this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
+      this.activeFormIndex = 1;
     }
+  }
+
+  paymentWithStripe() {
+    this.stripeService
+      .createToken(this.card.element)
+      .subscribe((result) => {
+        if (result.token) {
+          // Use the token
+          console.log(result.token.id);
+        } else if (result.error) {
+          this.notificationService.displayError('Error', result.error.message);
+          // Error creating the token
+          console.log(result.error.message);
+        }
+      });
   }
 
   clearForm() {
@@ -173,7 +218,6 @@ export class GiveComponent implements OnInit, DoCheck {
     });
 
     if (this.giveControls.feeCover.value && (tithe.value + offeringTotal) !== 0) {
-      console.log(+(tithe.value + offeringTotal + (((tithe.value + offeringTotal) * GiveConstants.RATE_FEE.rate) + 0.30)).toFixed(2))
       return +(tithe.value + offeringTotal + (((tithe.value + offeringTotal) * GiveConstants.RATE_FEE.rate) + 0.30)).toFixed(2);
     }
 

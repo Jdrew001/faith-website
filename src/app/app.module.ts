@@ -30,6 +30,7 @@ import { VisitorFormModule } from './administration/visitor/visitor-form/visitor
 import { WatchComponent } from './watch/watch.component';
 import { WatchService } from './watch/watch.service';
 import { IconsModule } from 'ng-uikit-pro-standard'
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [

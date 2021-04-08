@@ -11,6 +11,8 @@ import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 import { NotificationService } from '../core/services/notification.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MdbCreditCardDirective } from 'ng-uikit-pro-standard';
+import { LoaderService } from '../core/loader/loader.service';
 
 @Component({
   selector: 'app-give',
@@ -31,7 +33,7 @@ export class GiveComponent implements OnInit, DoCheck {
     this.scrollService.menuService$.next(true);
   } 
 
-  @ViewChild(StripeCardComponent) card: StripeCardComponent;
+  @ViewChild(MdbCreditCardDirective) card;
 
   giveValidator = new GiveFormValidator();
   activeFormIndex = 0;
@@ -39,6 +41,11 @@ export class GiveComponent implements OnInit, DoCheck {
   imageUrl = '';
   formSubmitted = false;
   giveTotal: number = 0;
+  cardForm: FormGroup = new FormGroup({
+    card: new FormControl('', [Validators.required]),
+    cvv: new FormControl('', [Validators.required]),
+    expiration: new FormControl('', [Validators.required])
+  })
   giveForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     firstName: new FormControl(null, [Validators.required]),
@@ -46,30 +53,9 @@ export class GiveComponent implements OnInit, DoCheck {
     phone: new FormControl(null, [Validators.required]),
     tithe: new FormControl(0),
     offeringArray: new FormArray([]),
-    feeCover: new FormControl(true)
+    feeCover: new FormControl(true),
+    
   }, [this.giveValidator.oneRequired]);
-
-  cardOpts: StripeCardElementOptions = {
-    hidePostalCode: true,
-    iconStyle: 'solid',
-    style: {
-      base: {
-        backgroundColor: '#f7f7f7',
-        iconColor: '#E02E2E',
-        color: '#31325F',
-        lineHeight: '50px',
-        fontWeight: '300',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSize: '14px',
-        '::placeholder': {
-          color: '#CFD7E0',
-        },
-      },
-    }
-  }
-  elementsOptions: StripeElementsOptions = {
-    locale: 'en',
-  };
 
   constructor(
     private helperService: HelperService,
@@ -77,7 +63,8 @@ export class GiveComponent implements OnInit, DoCheck {
     private activeRoute: ActivatedRoute,
     private scrollService: ScrollService,
     private stripeService: StripeService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private loaderService: LoaderService) { }
 
   get giveControls() {
     return {
@@ -119,15 +106,15 @@ export class GiveComponent implements OnInit, DoCheck {
     this.formSubmitted = true;
     this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
     if (this.giveForm.valid) {
-      this.formSubmitted = false;
-      const formVal = this.giveForm.value;
-      formVal.phone = formVal.phone.replace(/\D/g,"");
-      this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
+      console.log('test!!!', this.giveForm);
+      // this.formSubmitted = false;
+      // const formVal = this.giveForm.value;
+      // formVal.phone = formVal.phone.replace(/\D/g,"");
+      // this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
     }
   }
   
   submitWithStripe() {
-    
     this.formSubmitted = true;
     this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
     if (this.giveForm.valid) {
@@ -139,18 +126,27 @@ export class GiveComponent implements OnInit, DoCheck {
   }
 
   paymentWithStripe() {
-    this.stripeService
-      .createToken(this.card.element)
-      .subscribe((result) => {
-        if (result.token) {
-          // Use the token
-          console.log(result.token.id);
-        } else if (result.error) {
-          this.notificationService.displayError('Error', result.error.message);
-          // Error creating the token
-          console.log(result.error.message);
-        }
-      });
+    let data = {
+      cardDetails: this.cardForm.getRawValue(),
+      giverDetails: this.giveForm.getRawValue()
+    }
+
+    let encryptedData = this.giveService.encryptInformation(JSON.stringify(data));
+    let body = {
+      data: encryptedData
+    }
+    this.loaderService.toggleLoader(true);
+    this.giveService.capturePaymentForStripe(body).subscribe(res => {
+      this.loaderService.toggleLoader(false);
+      this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
+      this.cardForm.reset();
+      this.giveForm.reset();
+      this.activeFormIndex = 0;
+      this.formSubmitted = false;
+    },err => {
+      this.loaderService.toggleLoader(false);
+      this.notificationService.displaySuccess('GIVING INCOMPLETE', 'Online giving encounter an error')
+    });
   }
 
   clearForm() {

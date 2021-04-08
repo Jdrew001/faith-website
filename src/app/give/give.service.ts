@@ -8,11 +8,14 @@ import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from '../core/services/notification.service';
 import { EmailService } from '../core/services/email.service';
 import { Location } from '@angular/common';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GiveService {
+
+  secretKey = "mK3rWMKewwkuFEXFbjIYcbmmDGNy4PIJ";
 
   constructor(
     private httpClient: HttpClient,
@@ -99,6 +102,11 @@ export class GiveService {
     }
   }
 
+  capturePaymentForStripe(data) {
+    const url = this.helperService.getCMSResource('/captureGiving');
+    return this.httpClient.post(url, data);
+  }
+
   // called in capture order method
   handleCompletedOrder(status) {
     if (status && status === GiveConstants.COMPLETED) {
@@ -171,5 +179,13 @@ export class GiveService {
         landing_page: GiveConstants.BILLING
       }
     }
+  }
+
+  encryptInformation(data) {
+    return CryptoJS.AES.encrypt(data, this.secretKey.trim()).toString();
+  }
+
+  decrypt(text) {
+    return CryptoJS.AES.decrypt(text, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
   }
 }

@@ -3,10 +3,34 @@ div.section-container {
 }
 
 .btn .fab, .btn .fab i {
-    font-size: 2.5rem !important;
+    font-size: 1.2rem !important;
+}
+::ng-deep mdb-icon {
+    position: absolute;
+    top: 25%;
+    left: 2%;
 }
 ::ng-deep .fab {
-    font-size: 2.5rem !important;
+    font-size: 1.2rem !important;
+}
+
+.btn .fas, .btn .fas i {
+    font-size: 1.2rem !important;
+}
+::ng-deep .fas {
+    font-size: 1.2rem !important;
+}
+
+::ng-deep .cc-info i {
+    position: absolute !important;
+    left: 2% !important;
+    top: 55% !important;
+    font-size: 20px !important;
+    color: #E02E2E !important;
+}
+
+.cc-info input {
+    padding-left: 12% !important;
 }
 div.heading {
     height: 100vh;

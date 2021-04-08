@@ -62,7 +62,7 @@
                     <input currencyMask formControlName="offering" type="text" class="form-control z-depth-1" placeholder="Offering Amount">
                   </div>
                   <div class="mb-2 col-md-6 col-sm-12">
-                    <select formControlName="offeringCategory" class="browser-default custom-select z-depth-1 form-control">
+                    <select (change)="onChange($event.target)" formControlName="offeringCategory" class="browser-default custom-select z-depth-1 form-control">
                       <option [ngValue]="null">Select</option>
                       <option *ngFor="let cat of categories(offeringArray)" [disabled]="cat.disabled" [ngValue]="cat.value">{{ cat.label }}</option>
                     </select>

@@ -172,17 +172,7 @@ export class GiveComponent implements OnInit, DoCheck {
   popOffering() {
     const formArr = this.giveControls.offeringArray as FormArray;
     formArr.removeAt(formArr.length - 1);
-    if (formArr.length === 0) {
-      GiveConstants.OFFERING_CATEGORIES.forEach(val => val.disabled = false);
-    } else {
-      GiveConstants.OFFERING_CATEGORIES.forEach(val => val.disabled = false);
-      formArr.value.forEach(element => {
-        let item = GiveConstants.OFFERING_CATEGORIES.find(x => x.value === element['offeringCategory']);
-        if (item) {
-          item.disabled = true;
-        }
-      });
-    }
+    this.checkFormArrSel(formArr);
   }
 
   categories(formArr: FormArray) {
@@ -208,6 +198,25 @@ export class GiveComponent implements OnInit, DoCheck {
     }
 
     return res;
+  }
+
+  onChange(e) {
+    const formArr = this.giveControls.offeringArray as FormArray;
+    this.checkFormArrSel(formArr);
+  }
+
+  checkFormArrSel(formArr) {
+    if (formArr.length === 0) {
+      GiveConstants.OFFERING_CATEGORIES.forEach(val => val.disabled = false);
+    } else {
+      GiveConstants.OFFERING_CATEGORIES.forEach(val => val.disabled = false);
+      formArr.value.forEach(element => {
+        let item = GiveConstants.OFFERING_CATEGORIES.find(x => x.value === element['offeringCategory']);
+        if (item) {
+          item.disabled = true;
+        }
+      });
+    }
   }
 
   private showOrderResult(params) {

@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from '../core/services/notification.service';
 import { EmailService } from '../core/services/email.service';
 import { Location } from '@angular/common';
-import * as CryptoJS from 'crypto-js';
+import { Crypt, RSA } from 'hybrid-crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,8 @@ import * as CryptoJS from 'crypto-js';
 export class GiveService {
 
   secretKey = "mK3rWMKewwkuFEXFbjIYcbmmDGNy4PIJ";
+  crypt: Crypt = new Crypt();
+  rsa = new RSA();
 
   constructor(
     private httpClient: HttpClient,
@@ -23,7 +25,9 @@ export class GiveService {
     private emailService: EmailService,
     private helperService: HelperService,
     private loaderService: LoaderService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService) {
+
+    }
 
   // called first
   initiateGivingRequest(formValue, total) {
@@ -182,10 +186,10 @@ export class GiveService {
   }
 
   encryptInformation(data) {
-    return CryptoJS.AES.encrypt(data, this.secretKey.trim()).toString();
+    return this.crypt.encrypt(GiveConstants.PUBLIC_KEY, JSON.stringify(data));
   }
 
   decrypt(text) {
-    return CryptoJS.AES.decrypt(text, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
+    //return CryptoJS.AES.decrypt(text, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
   }
 }

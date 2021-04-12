@@ -111,6 +111,11 @@ export class GiveService {
     return this.httpClient.post(url, data);
   }
 
+  fetchPaymentIntent(id) {
+    const url = this.helperService.getCMSResource('/retrievePaymentIntent');
+    return this.httpClient.post(url, {paymentIntentId: id});
+  }
+
   // called in capture order method
   handleCompletedOrder(status) {
     if (status && status === GiveConstants.COMPLETED) {

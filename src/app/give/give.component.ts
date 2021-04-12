@@ -27,7 +27,7 @@ import { LoaderService } from '../core/loader/loader.service';
     ])
   ]
 })
-export class GiveComponent implements OnInit, DoCheck {
+export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
 
   @HostListener('window:scroll', ['$event']) onScrollEvent($event){
     this.scrollService.menuService$.next(true);
@@ -91,6 +91,10 @@ export class GiveComponent implements OnInit, DoCheck {
     this.showOrderResult(this.activeRoute.snapshot.queryParams);
   }
 
+  ngAfterViewInit() {
+    this.handleStripeRedirect(this.activeRoute.snapshot.queryParams);
+  }
+
   ngDoCheck() {
     const titheAmount = this.giveControls.tithe;
     if (!titheAmount.value) { titheAmount.setValue(0) }
@@ -137,16 +141,39 @@ export class GiveComponent implements OnInit, DoCheck {
     }
     this.loaderService.toggleLoader(true);
     this.giveService.capturePaymentForStripe(body).subscribe(res => {
-      this.loaderService.toggleLoader(false);
-      this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
-      this.cardForm.reset();
-      this.giveForm.reset();
-      this.activeFormIndex = 0;
-      this.formSubmitted = false;
+      if (res && res['paymentIntent'] && res['paymentIntent']['next_action'] && res['paymentIntent']['next_action']['type'] == 'redirect_to_url') {
+        let url = res['paymentIntent']['next_action']['redirect_to_url']['url'];
+        console.log('test', url);
+        sessionStorage.setItem('PAYMENT_UPDATE', 'pending');
+        setTimeout(function(){
+          location.href = url;
+        },250);
+      } else {
+        this.loaderService.toggleLoader(false);
+        this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
+        this.cardForm.reset();
+        this.giveForm.reset();
+        this.activeFormIndex = 0;
+        this.formSubmitted = false;
+      }
     },err => {
       this.loaderService.toggleLoader(false);
-      this.notificationService.displaySuccess('GIVING INCOMPLETE', 'Online giving encounter an error')
+      this.notificationService.displayError('GIVING INCOMPLETE', 'Online giving encounter an error')
     });
+  }
+
+  handleStripeRedirect(id) {
+    if (id && id['payment_intent']) {
+      this.giveService.fetchPaymentIntent(id['payment_intent']).subscribe(res => {
+        if (res && res['last_payment_error']) {
+          this.notificationService.displayError('GIVING INCOMPLETE', 'Online giving encounter an error')
+        } else {
+          this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
+        }
+      }, err => {
+        this.notificationService.displayError('GIVING INCOMPLETE', 'Online giving encounter an error')
+      })
+    }
   }
 
   clearForm() {

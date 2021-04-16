@@ -110,11 +110,10 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
     this.formSubmitted = true;
     this.giveForm.updateValueAndValidity({onlySelf:true, emitEvent: false});
     if (this.giveForm.valid) {
-      console.log('test!!!', this.giveForm);
-      // this.formSubmitted = false;
-      // const formVal = this.giveForm.value;
-      // formVal.phone = formVal.phone.replace(/\D/g,"");
-      // this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
+      this.formSubmitted = false;
+      const formVal = this.giveForm.value;
+      formVal.phone = formVal.phone.replace(/\D/g,"");
+      this.giveService.initiateGivingRequest(formVal, this.giveTotal.toString());
     }
   }
   
@@ -150,11 +149,16 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
         },250);
       } else {
         this.loaderService.toggleLoader(false);
-        this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
-        this.cardForm.reset();
-        this.giveForm.reset();
-        this.activeFormIndex = 0;
-        this.formSubmitted = false;
+        if (res && res['status'] == 501) {
+          this.notificationService.displayError('GIVING INCOMPLETE', res['message']);
+        } else {
+          this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
+          this.cardForm.reset();
+          this.giveForm.reset();
+          this.activeFormIndex = 0;
+          this.formSubmitted = false;
+        }
+        
       }
     },err => {
       this.loaderService.toggleLoader(false);

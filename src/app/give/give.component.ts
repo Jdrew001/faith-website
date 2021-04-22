@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, AfterViewInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, DoCheck, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { HelperService } from '../core/services/helper.service';
 import { GiveConstants } from './give.constant';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
@@ -13,6 +13,9 @@ import { NotificationService } from '../core/services/notification.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MdbCreditCardDirective } from 'ng-uikit-pro-standard';
 import { LoaderService } from '../core/loader/loader.service';
+import { isNullOrUndefined } from '@swimlane/ngx-datatable/release/utils';
+
+declare var Stripe;
 
 @Component({
   selector: 'app-give',
@@ -34,6 +37,17 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
   } 
 
   @ViewChild(MdbCreditCardDirective) card;
+  @ViewChild('numberElement', null) numberElement: ElementRef;
+  @ViewChild('expElement', null) expElement: ElementRef;
+  @ViewChild('cvvElement', null) cvvElement: ElementRef;
+
+  stripe;
+  number;
+  exp;
+  cvv;
+  cardErrors;
+  expErrors;
+  cvvErrors;
 
   giveValidator = new GiveFormValidator();
   activeFormIndex = 0;
@@ -41,6 +55,7 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
   imageUrl = '';
   formSubmitted = false;
   giveTotal: number = 0;
+  zipCode = '';
   cardForm: FormGroup = new FormGroup({
     card: new FormControl('', [Validators.required]),
     cvv: new FormControl('', [Validators.required]),
@@ -56,6 +71,35 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
     feeCover: new FormControl(true),
     
   }, [this.giveValidator.oneRequired]);
+
+  elementStyles = {
+    base: {
+      color: 'black',
+      fontFamily: 'Source Code Pro, Consolas, Menlo, monospace',
+      fontSize: '18px',
+      fontSmoothing: 'antialiased',
+      borderBottom: '1px solid #DEDEDE',
+
+      '::placeholder': {
+        color: '#6C757D',
+      },
+      ':-webkit-autofill': {
+        color: 'black',
+      },
+    },
+    invalid: {
+      color: '#E25950',
+      '::placeholder': {
+        color: 'black',
+      },
+    },
+  };
+
+  elementClasses = {
+    focus: 'focused',
+    empty: 'empty',
+    invalid: 'invalid',
+  };
 
   constructor(
     private helperService: HelperService,
@@ -86,7 +130,13 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
     return this.offeringArray.controls[this.offeringArray.length - 1];
   }
 
+  get isCreditCardFormValid() {
+    return isNullOrUndefined(this.cardErrors) && isNullOrUndefined(this.expErrors) && isNullOrUndefined(this.cvvErrors) && this.zipCode !== '' && this.zipCode.length == 5
+  }
+
   ngOnInit() {
+    this.stripe = Stripe(GiveConstants.STRIPE_PK);
+
     this.imageUrl = this.helperService.getResourceUrl(GiveConstants.GIVE_BG_URL, true);
     this.showOrderResult(this.activeRoute.snapshot.queryParams);
   }
@@ -125,45 +175,65 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
       const formVal = this.giveForm.value;
       formVal.phone = formVal.phone.replace(/\D/g,"");
       this.activeFormIndex = 1;
+      setTimeout(() => {
+        this.initStripeElements();
+        this.initStripeListenters();
+      },200)
     }
   }
 
-  paymentWithStripe() {
-    let data = {
-      cardDetails: this.cardForm.getRawValue(),
-      giverDetails: this.giveForm.getRawValue()
-    }
-
-    let encryptedData = this.giveService.encryptInformation(JSON.stringify(data));
-    let body = {
-      data: encryptedData
-    }
+  async paymentWithStripe() {
+    this.formSubmitted = true;
     this.loaderService.toggleLoader(true);
-    this.giveService.capturePaymentForStripe(body).subscribe(res => {
-      if (res && res['paymentIntent'] && res['paymentIntent']['next_action'] && res['paymentIntent']['next_action']['type'] == 'redirect_to_url') {
-        let url = res['paymentIntent']['next_action']['redirect_to_url']['url'];
-        console.log('test', url);
-        sessionStorage.setItem('PAYMENT_UPDATE', 'pending');
-        setTimeout(function(){
-          location.href = url;
-        },250);
-      } else {
+    console.log(this.isCreditCardFormValid);
+    this.formSubmitted = false;
+    let id = localStorage.getItem('paymentId') as any;
+    if (!id) {
+      id = await this.createPaymentMethod();
+      if (id.error) {
+        this.notificationService.displayError('GIVING INCOMPLETE', id['error']['message']);
         this.loaderService.toggleLoader(false);
-        if (res && res['status'] == 501) {
-          this.notificationService.displayError('GIVING INCOMPLETE', res['message']);
-        } else {
-          this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
-          this.cardForm.reset();
-          this.giveForm.reset();
-          this.activeFormIndex = 0;
-          this.formSubmitted = false;
+      } else {
+        //localStorage.setItem('paymentId', id['paymentMethod']['id']);
+        let data = {
+          cardDetails: {
+            paymentMethodId: id['paymentMethod']['id']
+          },
+          giverDetails: this.giveForm.getRawValue()
         }
-        
+
+        let encryptedData = this.giveService.encryptInformation(JSON.stringify(data));
+        let body = {
+          data: encryptedData
+        }
+
+        this.giveService.capturePaymentForStripe(body).subscribe(res => {
+          this.loaderService.toggleLoader(false);
+          if (res && res['paymentIntent'] && res['paymentIntent']['next_action'] && res['paymentIntent']['next_action']['type'] == 'redirect_to_url') {
+            let url = res['paymentIntent']['next_action']['redirect_to_url']['url'];
+            console.log('test', url);
+            sessionStorage.setItem('PAYMENT_UPDATE', 'pending');
+            setTimeout(function(){
+              location.href = url;
+            },250);
+          } else {
+            if (res && res['status'] == 501) {
+              this.notificationService.displayError('GIVING INCOMPLETE', res['message']);
+            } else {
+              this.notificationService.displaySuccess('GIVING COMPLETED', 'Online giving successfully completed');
+              this.cardForm.reset();
+              this.giveForm.reset();
+              this.activeFormIndex = 0;
+              this.formSubmitted = false;
+            }
+            
+          }
+        },err => {
+          this.loaderService.toggleLoader(false);
+          this.notificationService.displayError('GIVING INCOMPLETE', 'Online giving encounter an error')
+        });
       }
-    },err => {
-      this.loaderService.toggleLoader(false);
-      this.notificationService.displayError('GIVING INCOMPLETE', 'Online giving encounter an error')
-    });
+    }
   }
 
   handleStripeRedirect(id) {
@@ -250,10 +320,103 @@ export class GiveComponent implements OnInit, DoCheck, AfterViewInit {
     }
   }
 
+  private async createPaymentMethod() {
+    return await this.stripe.createPaymentMethod({
+      type: 'card',
+      card: this.number,
+      billing_details: {
+        email: this.giveControls.email.value,
+        name: `${this.giveControls.firstName.value} ${this.giveControls.lastName.value}`,
+        phone: this.giveControls.phone.value,
+        address: {
+          postal_code: this.zipCode
+        }
+      },
+  });
+  }
+
   private showOrderResult(params) {
     if (params && params.token) {
       this.giveService.captureOrder();
     }
+  }
+
+  private initStripeElements() {
+    const elements = this.stripe.elements();
+    this.number = elements.create('cardNumber', {
+      style: this.elementStyles,
+      classes: this.elementClasses
+    });
+    this.exp = elements.create('cardExpiry', {
+      style: this.elementStyles,
+      classes: this.elementClasses
+    });
+    this.cvv = elements.create('cardCvc', {
+      style: this.elementStyles,
+      classes: this.elementClasses
+    });
+    this.number.mount(this.numberElement.nativeElement);
+    this.exp.mount(this.expElement.nativeElement);
+    this.cvv.mount(this.cvvElement.nativeElement);
+  }
+
+  private initStripeListenters() {
+    this.number.addEventListener('change', ({ error, empty }) => {
+      this.cardErrors = null;
+      if (error || empty) {
+        this.cardErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
+    this.number.addEventListener('ready', ({ error, empty }) => {
+      this.cardErrors = null;
+      if (error || empty) {
+        this.cardErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
+
+    this.exp.addEventListener('change', ({ error, empty }) => {
+      this.expErrors = null;
+      if (error || empty) {
+        this.expErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
+    this.exp.addEventListener('ready', ({ error, empty }) => {
+      this.expErrors = null;
+      if (error || empty) {
+        this.expErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
+
+    this.cvv.addEventListener('change', ({ error, empty }) => {
+      this.cvvErrors = null;
+      if (error || empty) {
+        this.cvvErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
+    this.cvv.addEventListener('ready', ({ error, empty }) => {
+      this.cvvErrors = null;
+      if (error || empty) {
+        this.cvvErrors = {
+          isEmpty: empty,
+          error: error
+        }
+      }
+    });
   }
 
   private calculateTotal(tithe, offering: FormArray) : number {

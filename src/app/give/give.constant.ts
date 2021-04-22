@@ -19,6 +19,10 @@ export class GiveConstants {
         secret: 'EBaX5AIeESnOlfMAdmnRyTKYX-jVX_5m0CQ7mzdE1zOcIO34tsrSb05MUAV4wF0u5KGpsD838ZmFTK-s'
     };
 
+    //public static STRIPE_PK = 'pk_test_51IWOf3A0DJoBf0VzbZR7l3xohneGilLnLoYtjesw2BED5SqjGsV8TZa2Xx9d68RCFlmAN87ErPgQhx9UMT1yrC1400omCjotV3';
+    public static STRIPE_PK = 'pk_live_51IWOf3A0DJoBf0VzY3xgx6DmyJKBu1Jdu32HvAxA0QLmjIrYAzF9MAehrqDnJRlTg7fw3u3kkEGUAnHrgqupldL100jciG8fKC'
+
+
     public static PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
     MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAsAjdi8p0adqAiDqtY5VQ
     S6FKjiNPdspE9GceMvoZbvv2eSLiNLBnfAPLe+s7duFLZklMekc5QTzsRtIUu6Em

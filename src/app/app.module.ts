@@ -29,6 +29,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { VisitorFormModule } from './administration/visitor/visitor-form/visitor-form.module';
 import { WatchComponent } from './watch/watch.component';
 import { WatchService } from './watch/watch.service';
+import { IconsModule } from 'ng-uikit-pro-standard'
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { WatchService } from './watch/watch.service';
     NgxsModule.forRoot([
       TokenState
     ]),
+    IconsModule,
     NgxsLoggerPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({
       key : 'auth'

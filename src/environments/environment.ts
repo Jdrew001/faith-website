@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   BASE_URL: 'http://antsle.ddns.me/faith-service/',
-  CMS_URL: 'http://localhost:1337',
+  CMS_URL: 'http://192.168.43.202:1337',
   // BASE_URL: 'http://localhost:8090/',
   REDIRECT_PAGE: 'http://localhost:4200/give/',
   ASSET_URL: '/assets/',

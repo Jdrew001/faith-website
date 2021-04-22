@@ -2,12 +2,51 @@ div.section-container {
     height: 100%;
 }
 
+.btn .fab, .btn .fab i {
+    font-size: 1.2rem !important;
+}
+::ng-deep mdb-icon {
+    position: absolute;
+    top: 25%;
+    left: 2%;
+}
+::ng-deep .fab {
+    font-size: 1.2rem !important;
+}
+
+.btn .fas, .btn .fas i {
+    font-size: 1.2rem !important;
+}
+::ng-deep .fas {
+    font-size: 1.2rem !important;
+}
+
+::ng-deep .cc-info i {
+    position: absolute !important;
+    left: 2% !important;
+    top: 55% !important;
+    font-size: 20px !important;
+    color: #E02E2E !important;
+}
+
+.cc-info input {
+    padding-left: 12% !important;
+}
 div.heading {
     height: 100vh;
     background-position: 65% !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-attachment: fixed !important;   
+}
+
+a.clear-btn {
+    border-bottom: 1px solid #E02E2E;
+    color: #E02E2E;
+}
+
+a.clear-btn:hover {
+    cursor: pointer;
 }
 
 div.heading div.bg-fill {

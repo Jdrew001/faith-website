@@ -7,6 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
 import { NgxStripeModule } from 'ngx-stripe';
+import { EntryComponent } from './entry/entry.component';
+import { GivingInfoComponent } from './giving-info/giving-info.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     align: "left",
@@ -20,7 +24,11 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
 @NgModule({
   declarations: [
-    GiveComponent
+    GiveComponent,
+    EntryComponent,
+    GivingInfoComponent,
+    UserInfoComponent,
+    PaymentInfoComponent
   ],
   imports: [
     CommonModule,

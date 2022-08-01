@@ -90,11 +90,11 @@
               <p class="mb-2" style="color: black; text-align: center; width: 100%"><strong>Giving Total:</strong> {{ giveTotal | currency }} <em style="font-size: 10px" *ngIf="giveControls.feeCover.value">(2.2% + $0.30)</em></p>
             </div>
           
-              <div class="row justify-content-center pay">
+              <!-- <div class="row justify-content-center pay">
                 <div id="paypal-button-container" class="col-md-8">
                   <a mdbBtn class="waves-light button btn-block z-depth-1" style="font-size: 15px;" (click)="submitWithPaypal()">Pay With PayPal&nbsp;&nbsp;<mdb-icon fab icon="cc-paypal"></mdb-icon></a>
                 </div>
-              </div>
+              </div> -->
         
               <div class="row justify-content-center pay">
                 <div class="col-md-8">
@@ -113,7 +113,7 @@
             <div [@enterTrigger]="'fadeIn'" *ngSwitchCase="1">
               <p  style="color: black; text-align: left">Card Details</p>
               <div class="row justify-content-center cc-info">
-                <div class="col-md-10 p-0">
+                <div class="col-md-12 p-0">
                   <!-- <mdb-icon fas icon="credit-card" size="4x" *ngIf="!card.cardName"></mdb-icon>
                   <mdb-icon fab icon="cc-{{card.cardName}}" size="4x" *ngIf="card.cardName"></mdb-icon>
                   <input formControlName="card" placeholder="Credit Card" mdbInput mdbCreditCard #card="mdbCreditCard" id="form1" class="form-control" type="text"> -->
@@ -125,7 +125,7 @@
               </div>
   
               <div class="row justify-content-center">
-                <div class="col-md-10 p-0">
+                <div class="col-md-12 p-0">
                   <!-- <input formControlName="expiration" placeholder="Expiration Date" mdbInput mdbDateFormat [format]="['mm', 'yy']" id="form4" class="form-control" type="text"> -->
                   <div #expElement class="input form-control" id="expElement "></div>
                   <p class="error" style="font-size: 10px;margin: 2px !important;" *ngIf="expErrors?.error && formSubmitted">{{ expErrors?.error?.message }}</p>
@@ -134,7 +134,7 @@
               </div>
   
               <div class="row justify-content-center">
-                <div class="col-md-10 p-0">
+                <div class="col-md-12 p-0">
                   <!-- <input formControlName="cvv" placeholder="CVV" mdbInput mdbCvv id="form3" class="form-control" type="text"> -->
                   <div #cvvElement class="input form-control" id="cvvElement"></div>
                   <p class="error" style="font-size: 10px;margin: 2px !important;" *ngIf="cvvErrors?.error && formSubmitted">{{ cvvErrors?.error?.message }}</p>
@@ -143,8 +143,8 @@
               </div>
 
               <div class="row justify-content-center pb-5">
-                <div class="col-md-10 p-0">
-                  <input [(ngModel)]="zipCode" placeholder="Zip Code" mdbInput class="form-control" type="number" max="5">
+                <div class="col-md-12 p-0">
+                  <input [(ngModel)]="zipCode" placeholder="ZIP CODE" mdbInput class="form-control zip-code" type="number" max="5">
                   <p class="error" style="font-size: 10px;margin: 2px !important;" *ngIf="(zipCode === '') && formSubmitted">Please provide a zip code</p>
                 </div>
               </div>

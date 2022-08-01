@@ -80,6 +80,11 @@ span.error {
     padding-left: 5px !important;
 }
 
+input.zip-code {
+    font-family: Source Code Pro, Consolas, Menlo, monospace;
+    -webkit-font-smoothing: antialiased;
+}
+
 @media (max-width: 576px) {
     .p-5 {
         padding: 1.5rem !important;

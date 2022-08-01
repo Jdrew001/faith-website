@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { HelperService } from 'src/app/core/services/helper.service';
 import { AnnouncementImplService } from './announcement-impl.service';
-import { Announcement } from 'src/app/administration/announcement/announcement.model';
 import { FileUtilityService } from 'src/app/shared/utilities/FileUtilities';
-import { AnnouncementConstant } from 'src/app/administration/announcement/announcement.constant';
 import { LoaderService } from 'src/app/core/loader/loader.service';
 
 declare var require: any;
@@ -17,7 +15,7 @@ require('videojs-hls-quality-selector');
 })
 export class AnnouncementsComponent implements OnInit {
 
-  announcement: Announcement[] = [];
+  announcement: any[] = [];
   imgUrl = '';
 
   constructor(private helperService: HelperService, private announcementImplService: AnnouncementImplService,

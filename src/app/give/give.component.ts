@@ -13,7 +13,7 @@ import { NotificationService } from '../core/services/notification.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MdbCreditCardDirective } from 'ng-uikit-pro-standard';
 import { LoaderService } from '../core/loader/loader.service';
-import { isNullOrUndefined } from '@swimlane/ngx-datatable/release/utils';
+import { isNullOrUndefined } from 'util';
 
 declare var Stripe;
 

@@ -4,8 +4,6 @@ import { ContactConstant } from './contact.constant';
 import { SubscribeService } from '../core/services/subscribe.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ContactModel } from './contact.model';
-import { SubmitContact } from '../shared/actions/contact/SubmitContact';
-import { Store } from '@ngxs/store';
 import { ContactService } from './service/contact.service';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../core/services/notification.service';

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { LazyloaderDirective } from './directives/lazyloader.directive';
 import { PhoneMaskDirective } from './directives/phone-mask.directive';
-import { HeaderComponent } from '../administration/header/header.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ConfirmService } from './components/confirm/confirm.service';
 import { UnderContructionComponent } from './components/under-contruction/under-contruction.component';
@@ -24,7 +23,6 @@ import { ScrollService } from './scroll.service';
     NavigationComponent,
     LazyloaderDirective,
     PhoneMaskDirective,
-    HeaderComponent,
     ConfirmComponent,
     UnderContructionComponent,
     SpecialAlertComponent,
@@ -48,7 +46,6 @@ import { ScrollService } from './scroll.service';
     MDBBootstrapModulesPro,
     LazyloaderDirective,
     PhoneMaskDirective,
-    HeaderComponent,
     ConfirmComponent,
     UnderContructionComponent,
     SpecialAlertComponent,

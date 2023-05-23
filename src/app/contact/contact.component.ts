@@ -53,22 +53,22 @@ export class ContactComponent implements OnInit {
     this.formSubmitted = true;
     if (this.contactForm.valid) {
       this.loaderService.toggleLoader(true);
-      this.contactService.uploadContact(this.contactForm.getRawValue()).subscribe(res => {
-        this.loaderService.toggleLoader(false);
-        this.notificationService.displaySuccess('Successfully sent message', 'SUCCESS');
-        this.contactForm.reset();
-      }, err => {
-        this.loaderService.toggleLoader(false);
-        this.notificationService.displayError('Error sending message', 'ERROR');
-      })
-      // this.contactService.sendContact(this.contactForm.getRawValue()).then(res => {
-      //   // successfully sent email
+      // this.contactService.uploadContact(this.contactForm.getRawValue()).subscribe(res => {
       //   this.loaderService.toggleLoader(false);
       //   this.notificationService.displaySuccess('Successfully sent message', 'SUCCESS');
       //   this.contactForm.reset();
-      // }).catch(err => {
+      // }, err => {
+      //   this.loaderService.toggleLoader(false);
       //   this.notificationService.displayError('Error sending message', 'ERROR');
-      // });
+      // })
+      this.contactService.sendContact(this.contactForm.getRawValue()).then(res => {
+        // successfully sent email
+        this.loaderService.toggleLoader(false);
+        this.notificationService.displaySuccess('Successfully sent message', 'SUCCESS');
+        this.contactForm.reset();
+      }).catch(err => {
+        this.notificationService.displayError('Error sending message', 'ERROR');
+      });
     }
   }
 

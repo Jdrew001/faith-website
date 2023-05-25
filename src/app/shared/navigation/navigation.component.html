@@ -25,7 +25,7 @@
         <li class="nav-item" [routerLink]="['/contact']" routerLinkActive="active" (click)="changeUrl('contact')">
           <a (click)="toggleNavbar($event)" class="nav-link">Contact</a>
         </li>
-        <li class="nav-item" [routerLink]="['/give']" routerLinkActive="active" (click)="changeUrl('give')">
+        <li class="nav-item" routerLinkActive="active" (click)="changeUrl('give'); navigateToGive('faith-giving')">
           <a (click)="toggleNavbar($event)" class="nav-link">Give</a>
         </li>
       </ul>

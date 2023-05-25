@@ -63,4 +63,8 @@ export class NavigationComponent implements OnInit {
     console.log("LOGGED: ", url);
     this.subscribeService.urlChanged(url);
   }
+
+  navigateToGive() {
+    window.location.href = 'https://discoverfaitharlington.org/faith-giving/';
+  }
 }

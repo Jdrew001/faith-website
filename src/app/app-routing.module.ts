@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'watch', component: WatchComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'give', component: UnderContructionComponent },
+  //{ path: 'give', component: UnderContructionComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '**', component: HomeComponent }
 ];

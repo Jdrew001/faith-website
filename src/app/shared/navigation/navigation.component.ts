@@ -65,6 +65,6 @@ export class NavigationComponent implements OnInit {
   }
 
   navigateToGive() {
-    window.location.href = 'https://discoverfaitharlington.org/faith-giving/';
+    window.location.href = 'https://discoverfaitharlington.org/give/';
   }
 }

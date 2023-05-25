@@ -43,7 +43,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with: 
           local: project/faith-website
-          remote: /var/www/html
+          remote: /var/www/html/faith-website/
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
